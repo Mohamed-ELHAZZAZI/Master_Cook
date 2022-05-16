@@ -11,6 +11,7 @@ class User extends Model
     public $last_name;
     public $profile_img;
     public $first_name;
+    public $is_admin;
 
     /**
      * 
@@ -44,7 +45,7 @@ class User extends Model
 
     public static function all()
     {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users ";
         return App::$db->query($sql)->fetchAll(PDO::FETCH_CLASS, User::class);
     }
 
@@ -88,5 +89,10 @@ class User extends Model
     public function updateProfile() {
         $sql = "UPDATE users SET profile_img = ? WHERE id = ?";
         return App::$db->query($sql, [$this->profile_img, $this->id]);
+    }
+
+    public function updateAdmin() {
+        $sql = "UPDATE users SET is_admin = ? WHERE id = ?";
+        return App::$db->query($sql, [$this->is_admin, $this->id]);
     }
 }

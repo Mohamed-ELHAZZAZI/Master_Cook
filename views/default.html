@@ -72,7 +72,7 @@
                                         <li><a href="#"><i class="fas fa-heart"></i>My lists</a></li>
                                         <li><a href="#"><i class="fas fa-user-alt"></i>profile settings</a></li>
                                         <?php if($admin) {?>
-                                            <li><a href="#"><i class="fas fa-users"></i>users list</a></li>
+                                            <li><a href="<?= URL ?>/admin/users"><i class="fas fa-users"></i>users list</a></li>
                                         <li><a href="#"><i class="fab fa-creative-commons-pd"></i>Unpublished posts</a></li>
                                        <?php }?>
                                        <li><a href="<?= URL ?>/users/logout"><i class="fas fa-sign-out-alt"></i>logout</a></li>
@@ -116,6 +116,5 @@
 
     <!-- <script src="<?= URL  ?>/js/create.js"></script> -->
     <script src="<?= URL  ?>/js/main.js"></script>
-    <script src="<?= URL  ?>/js/error_msg.js"></script>
   </body>
 </html>

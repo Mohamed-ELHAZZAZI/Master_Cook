@@ -1,0 +1,39 @@
+.thead-dark {
+  background-color: #2b2b43;
+  color: white;
+}
+.btn:focus , .mr-sm-2:focus, .btn-close:focus  {
+  box-shadow: none !important;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.table_container {
+  width: 80%;
+  margin: 0 auto;
+  height: 500px;
+  overflow-y: scroll;
+}
+.navbar {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-inline {
+  gap: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.show {
+  width: 80%;
+  margin: 16px 0;
+}

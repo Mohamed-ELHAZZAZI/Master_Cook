@@ -1,0 +1,128 @@
+<?php
+if(!isset($data["users"])) {
+    echo "error try agian later";
+}
+?>
+
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+      Search
+    </button>
+  </form>
+</nav>
+<?php
+      if(Session::hasFlash()) {?>
+<div
+  id="message"
+  class="alert alert-success alert-dismissible fade show"
+  role="alert"
+>
+  <?php Session::flash()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
+</div>
+<?php } elseif(Session::hasError()) {?>
+
+<div
+  id="message"
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert"
+>
+  <?php Session::error()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
+</div>
+<?php }elseif(Session::hasWarning()) {?>
+
+<div
+  id="message"
+  class="alert alert-warning alert-dismissible fade show"
+  role="alert"
+>
+  <?php Session::warning()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
+</div>
+<?php } ?>
+
+<div class="table_container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">User name</th>
+        <th scope="col">Email</th>
+        <th scope="col" colspan="3">Statut</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <!-- <th scope="col"></th>
+        <th scope="col"></th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach($data["users"] as $users) {?>
+      <tr>
+        <th scope="row"><?= $users->id ?></th>
+        <td><?= $users->first_name ?></td>
+        <td><?= $users->last_name ?></td>
+        <td><?= $users->user_name ?></td>
+        <td><?= $users->email ?></td>
+        <td>
+          <?php
+            if($users->is_admin) { echo "Admin"; }else{ echo "user"; } ?>
+        </td>
+        <form
+          action="<?=URL?>/admin/users/form/<?= $users->id ?>"
+          method="POST"
+        >
+          <!-- <input type="hidden" value="<?= $users->id ?>"> -->
+          <td>
+            <button type="button" class="btn btn-primary">Profile</button>
+          </td>
+          <?php if(($users->id != Session::get("user_id"))) { ?>
+          <td>
+            <button
+              type="submit"
+              onclick="return delete_user_confirm()"
+              name="delete"
+              class="btn btn-danger"
+            >
+              delete
+            </button>
+          </td>
+          <td>
+            <button type="submit" onclick="return set_admin_user_confirm()" name="SetAdmin" class="btn btn-secondary">
+              <?php  if($users->is_admin) { echo "Remove Admin"; }else { echo
+              "Set to Admin"; } ?>
+            </button>
+          </td>
+          <?php }?>
+        </form>
+      </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+</div>
+<button type="button" onclick="window.location.href = '<?= URL ?>'" class="btn btn-secondary">Go to main page</button>

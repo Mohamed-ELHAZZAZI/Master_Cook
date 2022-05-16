@@ -16,22 +16,50 @@
     </button>
   </form>
 </nav>
-
 <?php
-if(Session::hasFlash()) {?>
-
-<div class="alert alert-success" role="alert">
+      if(Session::hasFlash()) {?>
+<div
+  id="message"
+  class="alert alert-success alert-dismissible fade show"
+  role="alert"
+>
   <?php Session::flash()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
 </div>
 <?php } elseif(Session::hasError()) {?>
 
-<div class="alert alert-danger" role="alert">
+<div
+  id="message"
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert"
+>
   <?php Session::error()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
 </div>
 <?php }elseif(Session::hasWarning()) {?>
 
-<div class="alert alert-warning" role="alert">
+<div
+  id="message"
+  class="alert alert-warning alert-dismissible fade show"
+  role="alert"
+>
   <?php Session::warning()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
 </div>
 <?php } ?>
 
@@ -109,6 +137,4 @@ if(Session::hasFlash()) {?>
     </tbody>
   </table>
 </div>
-<a class="btn btn-outline-success" href="<?= URL  ?>users/create"
-  >Create</a
->
+<a class="btn btn-outline-success" href="<?= URL  ?>users/create">Create</a>

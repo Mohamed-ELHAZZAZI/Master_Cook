@@ -32,32 +32,9 @@ class UsersController extends Controller
         // $this->data["users"] = $users;
     }
 
-    public function delete()
-    {
-        if (isset($_POST["delete"])) {
-            $id =  $_POST["id"];
-            User::delete($id);
-            Session::setError('user deleted');
-            header("location: " . URL . "/users/show");
-        }
-        exit();
-    }
-    public function modify()
-    {
-        $id =  $this->parms[0];
-
-        $user = User::find($id);
-        $this->data["user"] = $user;
-    }
 
 
-    public function chat()
-    {
-        // $id =  $this->parms[0];
 
-        // $user = User::find($id);
-        // $this->data["user"] = $user;
-    }
     public function logout()
     {
         Session::destroy();
@@ -154,6 +131,68 @@ class UsersController extends Controller
             header("location: " . URL . "/users/profile");
         }
         header("location: " . URL . "/users/profile");
+        exit();
+    }
+
+
+    public function admin_index()
+    {
+        if (!Session::get("admin")) {
+            echo "page not found";
+            exit();
+        }
+        $users = User::all();
+        // echo "<pre>";
+        // var_dump($users);
+        // exit();
+        $this->data["users"] = $users;
+    }
+    public function admin_form()
+    {
+        if (!Session::get("admin")) {
+            echo "page not found";
+            exit();
+        }
+        $id = $this->parms[0];
+        if (isset($_POST["delete"])) {
+
+
+            if (!Session::get("admin")) {
+                echo "page not found";
+                exit();
+            }
+
+
+            User::delete($id);
+            Session::setFlash("User deleted!");
+            header("location: " . URL . "/admin/users");
+        } elseif (isset($_POST["SetAdmin"])) {
+
+            if (!Session::get("admin")) {
+                echo "page not found";
+                exit();
+            }
+
+
+            $user = User::find($id);
+            if ($user->is_admin) {
+                $user->is_admin = false;
+                $msg = "user id = " . $user->id . " degrade from admin";
+            } else {
+                $user->is_admin = true;
+                $msg = "user id = " . $user->id . " upgraded to admin";
+            }
+            $user->updateAdmin();
+            
+            if ($user->id === Session::get("user_id")) {
+                header("location: " . URL );
+                $msg = "You are no more";
+                exit();
+            }
+            Session::setWarning($msg);
+            header("location: " . URL . "/admin/users");
+        }
+        echo "Error";
         exit();
     }
 }
