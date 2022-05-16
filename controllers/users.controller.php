@@ -71,7 +71,7 @@ class UsersController extends Controller
     {
 
         if (isset($_POST["update"])) {
-            
+
             $id = Session::get("user_id");
             $user = User::find($id);
             if ($user->id != Session::get("user_id")) {
@@ -80,7 +80,7 @@ class UsersController extends Controller
                 exit();
             }
 
-            if (!Helper::isEmpty([$_POST["first_name"], $_POST["last_name"], $_POST["username"] , $_POST["email"] ])) {
+            if (!Helper::isEmpty([$_POST["first_name"], $_POST["last_name"], $_POST["username"], $_POST["email"]])) {
 
                 if (!Helper::email_check($_POST["email"])) {
                     Session::setError("Invalid username format");
@@ -106,5 +106,54 @@ class UsersController extends Controller
     }
 
 
+    public static function updateProfile()
+    {
 
+
+        if (isset($_POST["save_img"])) {
+            $id = Session::get("user_id");
+            $user = User::find($id);
+            if ($user->id != Session::get("user_id")) {
+                Session::setError("Ukonwn error, try again later");
+                header("location: " . URL . "/users/profile");
+                exit();
+            }
+            if (isset($_FILES['image'])) {
+                $file_temp = $_FILES['image']['tmp_name'];
+                if (!empty($file_temp)) {
+                    $allowed_ext = array("jpeg", "jpg", "gif", "png", "jfif");
+                    $exp = explode(".", $_FILES['image']['name']);
+                    $ext = end($exp);
+                    $file_name =  "profile_= " . $user->id . "." . $ext;
+                    $path = ROOT . S . "webroot" . S . "upload" . S . "users_profile" . S . $file_name;
+                    if (in_array($ext, $allowed_ext)) {
+                        if (move_uploaded_file($file_temp, $path)) {
+                            $user->profile_img =  "/webroot/upload/users_profile/" . $file_name;
+                        }
+                    } else {
+                        Session::setError("invalid image extention");
+                        header("location: " . URL . "/users/profile");
+                    }
+                }
+            }
+            $user->updateProfile();
+            Session::setFlash("Profile changed");
+            header("location: " . URL . "/users/profile");
+        } elseif (isset($_POST["delete_profile"])) {
+            $id = Session::get("user_id");
+            $user = User::find($id);
+            if ($user->id != Session::get("user_id")) {
+                Session::setError("Ukonwn error, try again later");
+                header("location: " . URL . "/users/profile");
+                exit();
+            }
+
+            $user->profile_img =  "/webroot/upload/users_profile/1.png";
+            $user->updateProfile();
+            Session::setFlash("Profile removed");
+            header("location: " . URL . "/users/profile");
+        }
+        header("location: " . URL . "/users/profile");
+        exit();
+    }
 }

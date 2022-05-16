@@ -84,4 +84,9 @@ class User extends Model
         $sql = "UPDATE users SET user_name = ? , last_name = ? ,first_name = ? ,email = ? WHERE id = ?";
         return App::$db->query($sql, [$this->user_name, $this->last_name, $this->first_name, $this->email, $this->id]);
     }
+
+    public function updateProfile() {
+        $sql = "UPDATE users SET profile_img = ? WHERE id = ?";
+        return App::$db->query($sql, [$this->profile_img, $this->id]);
+    }
 }

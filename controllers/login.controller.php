@@ -4,6 +4,10 @@ class LoginController extends Controller
 {
     public function index()
     {
+        if (Session::get("user_id") != null) {
+            header('location: '.URL);
+            exit();
+        }
     }
 
     public function getUser()

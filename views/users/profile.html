@@ -40,7 +40,7 @@ if(isset($data["user"])) {
                     <span class="info_box_title">Personal informations</span>
                     <!-- <span class="">Personal informations</span> -->
 
-                    <form method="POST" action="<?= URL ?>/master cook/profile/info_change.php" class="avatar_info" enctype="multipart/form-data">
+                    <form method="POST" action="<?= URL ?>/users/updateProfile" class="avatar_info" enctype="multipart/form-data">
                         <span class="inputs_title">Avatar</span>
                         <div class="profile_img_info">
                             <a href="#" id="chng_img" class="img_container">
@@ -51,7 +51,7 @@ if(isset($data["user"])) {
                             <div class="prof_btn">
                                 <!-- <button class="change_btn" name="save_img" type="button">Change</button> -->
                                 <input class="change_btn" name="save_img" type="submit" value="Save">
-                                <button class="delete_btn" onclick="window.location.href='<?= URL ?>/master cook/profile/remove_profile.php'" type="button">Remove</button>
+                                <button class="delete_btn" name="delete_profile" type="submit">Remove</button>
                             </div>
                         </div>
                     </form>

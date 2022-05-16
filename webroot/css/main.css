@@ -611,4 +611,6 @@ hr {
   margin: 0 auto;
 }
 
-
+.btn-close , .btn {
+  box-shadow: none !important;
+}
