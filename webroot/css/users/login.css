@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;1,300&family=Poppins:wght@100&display=swap");
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  background-color: #4e60ff;
+  height: 100%;
+}
+.right_box {
+  width: 60%;
+  background-color: #4e60ff;
+  height: 100vh;
+}
+.left_box {
+  width: 40%;
+  min-height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.left_box .main-left-box {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 100%;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/*logo*/
+.left_box .main-left-box .logo {
+  font-weight: 900;
+  color: #2b2b43;
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+}
+.left_box .main-left-box .logo .sec_logo {
+  color: #4e60ff;
+}
+/*login box*/
+
+.left_box .main-left-box .login-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.left_box .main-left-box .login-box .box-title {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 82px;
+  color: #2b2b43;
+}
+.left_box .main-left-box .login-box .box-description {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  color: #545563;
+}
+
+.left_box .main-left-box .login-box .login-info span {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  height: 16px;
+  padding-left: 5px;
+  color: #545563;
+}
+.left_box .main-left-box .login-box .login-info input {
+  height: 44px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #c7c8d2;
+  padding: 0;
+  padding-left: 5px;
+}
+.left_box .main-left-box .login-box .login-info input::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #83859c;
+  letter-spacing: 0.1px;
+}
+.left_box .main-left-box .login-box .saving_info {
+  display: flex;
+  font-weight: 400;
+  font-size: 14px;
+  align-items: center;
+  gap: 5px;
+  color: #2b2b43;
+}
+.left_box .main-left-box .login-box .saving_info .check_box {
+  margin: 0;
+  accent-color: #4e60ff;
+}
+
+.left_box .main-left-box .login-box .submit {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  width: 100%;
+  color: white;
+  background-color: #4e60ff;
+}
+.left_box .main-left-box .login-box .submit:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.left_box .main-left-box .login-box .recover_page {
+  width: 100%;
+  color: #4e60ff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.left_box .main-left-box .regester_link {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  text-align: center;
+  height: 25px;
+}
+.left_box .main-left-box .regester_link a {
+  text-decoration: none;
+  color: #4e60ff;
+}
+
+@media screen and (max-width: 995px) {
+  .left_box {
+    width: 60%;
+  }
+  .right_box {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .right_box {
+    display: none;
+  }
+  .left_box {
+    width: 100%;
+  }
+  .left_box .main-left-box {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .left_box {
+    width: 100%;
+    /* height: 100%; */
+  }
+  .right_box {
+    display: none;
+  }
+  .left_box .main-left-box {
+    gap: 25px;
+    width: 350px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .left_box {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 350px) {
+  .left_box .main-left-box {
+    width: 300px;
+  }
+}

@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="<?= URL  ?>/css/users/login.css" />
+
+  </head>
+  <body>
+<form method="POST" action="<?=URL?>/login/getUser" class="left_box">
+    <!---The big left box-->
+    <div class="main-left-box">
+      <span class="logo">Master<span class="sec_logo">cook</span></span>
+      <div class="login-box">
+        <span class="box-title">Login</span>
+        <span class="box-description">Sign in with your data that you entered during your
+          registration.</span>
+
+          <?php
+          if(Session::hasFlash()) {?>
+    
+          <div id="message" class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php Session::flash()?>
+            <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          <?php } elseif(Session::hasError()) {?>
+    
+          <div id="message" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?php Session::error()?>
+            <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          <?php }elseif(Session::hasWarning()) {?>
+    
+          <div id="message" class="alert alert-warningalert-dismissible fade show" role="alert">
+            <?php Session::warning()?>
+            <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          <?php } ?>
+
+        <label for="email" class="login-info">
+          <span>Email</span>
+          <input type="text" name="email" id="email" placeholder="name@example.com" />
+        </label>
+        <label for="password" class="login-info">
+          <span>Password</span>
+          <input type="password" name="password" id="password" placeholder="Password" />
+        </label>
+        <label for="keep-log" class="saving_info">
+          <input type="checkbox" id="keep-log" class="check_box" />
+          <span>Keep me logged in</span>
+        </label>
+        <input type="submit" value="Login" name="submit" class="submit" />
+        <a href="#" class="recover_page">Forgot password</a>
+      </div>
+      <span class="regester_link">Don't have an account?<a href="<?= URL  ?>/register">Sign up</a></span>
+    </div>
+  </form>
+  <div class="right_box"></div>

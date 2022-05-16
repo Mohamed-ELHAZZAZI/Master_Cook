@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="<?= URL  ?>/css/users/profile.css" />
+
+<?php
+if(isset($data["user"])) {
+    $user = $data["user"];
+}else {
+    Session::setError("Unkown Error, try agin later");
+    header("location: ".URL);
+    exit();
+}
+
+?>
+
+
+    <div class="profile_container">
+        <span class="account_title">Account</span>
+        <?php
+        if(Session::hasFlash()) {?>
+  
+        <div id="message" class="alert alert-success alert-dismissible fade show size" role="alert">
+          <?php Session::flash()?>
+          <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <?php } elseif(Session::hasError()) {?>
+  
+        <div id="message" class="alert alert-danger alert-dismissible fade show size" role="alert">
+          <?php Session::error()?>
+          <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <?php }elseif(Session::hasWarning()) {?>
+  
+        <div id="message" class="alert alert-warningalert-dismissible fade show size" role="alert">
+          <?php Session::warning()?>
+          <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <?php } ?>
+        <div class="profile_information">
+            <div class="info_box">
+                <div>
+                    <span class="info_box_title">Personal informations</span>
+                    <!-- <span class="">Personal informations</span> -->
+
+                    <form method="POST" action="<?= URL ?>/master cook/profile/info_change.php" class="avatar_info" enctype="multipart/form-data">
+                        <span class="inputs_title">Avatar</span>
+                        <div class="profile_img_info">
+                            <a href="#" id="chng_img" class="img_container">
+                                <i class="fas fa-camera camera"></i>
+                                <img class="profile_img" src="<?= $user->profile_img ?>" alt="">
+                            </a>
+                            <input type="file" name="image" class="file" id="file" accept=".png,.jpg,.jpeg,.gif,.jfif">
+                            <div class="prof_btn">
+                                <!-- <button class="change_btn" name="save_img" type="button">Change</button> -->
+                                <input class="change_btn" name="save_img" type="submit" value="Save">
+                                <button class="delete_btn" onclick="window.location.href='<?= URL ?>/master cook/profile/remove_profile.php'" type="button">Remove</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form method="POST" action="<?= URL ?>/users/update">
+                        <div class="personale_info">
+                            <label for="first_name" class="inp_lab">
+                                <span class="inputs_title">First name</span>
+                                <input type="text" id="first_name" placeholder="first_name" name="first_name" value="<?= $user->first_name ?>">
+                            </label>
+                            <label for="last_name" class="inp_lab">
+                                <span class="inputs_title">Last name</span>
+                                <input type="text" id="last_name" placeholder="last_name" name="last_name" value="<?= $user->last_name ?>">
+                            </label>
+                            <label for="first_name" class="inp_lab">
+                                <span class="inputs_title">User name</span>
+                                <input type="text" id="first_name" placeholder="user name" name="username" value="<?= $user->user_name ?>">
+                            </label>
+                            <label for="last_name" class="inp_lab">
+                                <span class="inputs_title">Email</span>
+                                <input type="text" id="last_name" placeholder="Email" name="email" value="<?= $user->email ?>">
+                            </label>
+                        </div>
+                </div>
+                <div class="sub_btn">
+                    <button type="button" onClick="window.location.href='<?= URL ?>/users/logout'"  class="btn delete_btn logout" name="logout">Log out</button>
+                    <div class="right_buttom_div">
+                        <input type="reset" value="Discard changes" class="btn change_btn discard reset">
+                        <button class="btn change_btn save" name="update">Save Changes</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+<script src="<?=URL?>/js/profile.js"></script>

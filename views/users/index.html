@@ -1,0 +1,114 @@
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline" method="POST" action="<?= URL  ?>users">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+      name="search_value"
+    />
+    <button
+      class="btn btn-outline-success my-2 my-sm-0"
+      name="search"
+      type="submit"
+    >
+      Search
+    </button>
+  </form>
+</nav>
+
+<?php
+if(Session::hasFlash()) {?>
+
+<div class="alert alert-success" role="alert">
+  <?php Session::flash()?>
+</div>
+<?php } elseif(Session::hasError()) {?>
+
+<div class="alert alert-danger" role="alert">
+  <?php Session::error()?>
+</div>
+<?php }elseif(Session::hasWarning()) {?>
+
+<div class="alert alert-warning" role="alert">
+  <?php Session::warning()?>
+</div>
+<?php } ?>
+
+<div class="table_div">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Profile</th>
+        <th scope="col">Contact</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+  
+                foreach( $data["users"] as $user) {?>
+
+      <tr>
+        <th scope="row" name="id"><?=$user->id?></th>
+        <td><?=$user->first_name?></td>
+        <td><?=$user->last_name?></td>
+        <td><?=$user->user_name?></td>
+        <td><?=$user->email?></td>
+        <td>
+          <img src="<?=$user->profile_img ?>" class="show_profile" alt="" />
+        </td>
+        <td>
+          <input type="hidden" name="id" value="<?= $user->id ?>" />
+          <a
+            href="<?= URL  ?>users/chat/<?= $user->id ?>"
+            name="modify"
+            class="btn btn-outline-secondary"
+          >
+            Chat
+          </a>
+        </td>
+        <td>
+          <input type="hidden" name="id" value="<?= $user->id ?>" />
+          <a
+            href="<?= URL  ?>users/modify/<?= $user->id ?>"
+            name="modify"
+            class="btn btn-outline-primary"
+          >
+            Modify
+          </a>
+        </td>
+        <td>
+          <form
+            action="<?= URL  ?>users/delete"
+            method="POST"
+            class="table_form"
+          >
+            <input type="hidden" name="id" value="<?= $user->id ?>" />
+            <button type="submit" class="btn btn-outline-danger" name="delete">
+              Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      <?php } 
+  
+      if (empty($data["users"])) { ?>
+      <tr>
+        <td colspan="7" class="not_found">No data founded</td>
+      </tr>
+      <?php }
+      
+      ?>
+    </tbody>
+  </table>
+</div>
+<a class="btn btn-outline-success" href="<?= URL  ?>users/create"
+  >Create</a
+>

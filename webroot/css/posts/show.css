@@ -1,0 +1,155 @@
+body {
+  background-color: #f7f7f9;
+}
+.container {
+  min-height: calc(100vh);
+  width: 50%;
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #edeef2;
+  padding: 20px 0;
+  border-radius: 10px;
+  transition-duration: 0.5s;
+  background-color: white;
+}
+.container .post_con {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container .post_con .title {
+  margin: 0;
+}
+.container .post_con .img_in_post {
+  max-width: 100%;
+  border: 1px solid #c7c8d2;
+  border-radius: 5px;
+}
+.container .post_con .video_in_post {
+  max-width: 100%;
+}
+.container .post_con .desc {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container .post_con .desc .desc_box {
+  border: 1px solid #c7c8d2;
+  padding: 5px 5px 5px 15px;
+  min-height: 73px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.cate_btn {
+  text-decoration: none;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  /* height: 50px; */
+  border-radius: 9px;
+  justify-content: center;
+  gap: 7px;
+  font-weight: 600;
+  border: 1px solid #83859cbd;
+  color: #2b2b43;
+  padding: 5px 17px;
+}
+.btn {
+  width: 160px;
+}
+.ttl {
+  font-weight: 700;
+}
+.categories,
+.signature {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.profile_img {
+  height: 42px;
+  width: 42px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 16px;
+  background-repeat: no-repeat;
+}
+
+.chng_post {
+  height: 55px;
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  margin-bottom: 20px;
+}
+
+.change_btn {
+  height: 50px;
+  width: 165px;
+  border: 1px solid black;
+}
+
+.change_btn.modify {
+  background-color: #4e60ff;
+  color: white;
+}
+
+.change_btn.delete {
+  background-color: #f35f5f;
+  color: white;
+}
+
+.size {
+  width: 50%;
+  margin: 15px auto;
+}
+
+@media only screen and (max-width: 1190px) {
+  .container,
+  .chng_post {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 975px) {
+  .container,
+  .chng_post {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .container,
+  .chng_post {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 730px) {
+  .container,
+  .chng_post {
+    width: 97%;
+  }
+}
+
+@media only screen and (max-width: 510px) {
+  .container,
+  .chng_post {
+    width: 100%;
+    border: none;
+    height: auto;
+  }
+  .chng_post {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .change_btn {
+    width: 80%;
+  }
+}

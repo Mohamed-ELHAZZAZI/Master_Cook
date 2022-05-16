@@ -1,0 +1,113 @@
+<?php 
+
+$post_info  = $data["post"];
+$chef  = $data["chef"];
+
+?>
+
+<style>
+    .modal.show{
+        display: block;
+    }
+</style>
+
+<link rel="stylesheet" href="<?= URL  ?>/css/posts/show.css">
+  
+  
+<?php
+
+    if(Session::hasFlash()) {?>
+
+    <div id="message" class="alert alert-success alert-dismissible fade show size" role="alert">
+      <?php Session::flash()?>
+      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php } elseif(Session::hasError()) {?>
+
+    <div id="message" class="alert alert-danger alert-dismissible fade show size" role="alert">
+      <?php Session::error()?>
+      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php }elseif(Session::hasWarning()) {?>
+
+    <div id="message" class="alert alert-warningalert-dismissible fade show size" role="alert">
+      <?php Session::warning()?>
+      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php } ?>
+
+
+
+<div class="container">
+    <div class="post_con">
+        <h1 class="title"><?= $post_info->title ?></h1>
+        <img class="img_in_post" id="post_img" src="<?= URL . $post_info->image ?>" alt="">
+        <span class="ttl">The Video:</span>
+        <video class="video_in_post" controls>
+            <source src="<?=  $post_info->video ?>" type="">
+        </video>
+        <span><span class="ttl">Estimated cooking time : </span><?= $post_info->estimated_time ?> min</span>
+        <div class="desc">
+            <span class="ttl">Discription:</span>
+            <span class="desc_box">
+                <?= $post_info->discription ?>
+                <span>
+        </div>
+        <div class="categories">
+            <Span class="ttl">Categorie : </Span>
+            <a class="cate_btn" href="#">
+                <?php
+
+                if ($post_info->catigories === "meat") {
+                    echo "<img src='../..//img/icons/16/meat_16.png' alt=''>";
+                } else if ($post_info->catigories === "vegetable") {
+                    echo "<img src='../..//img/icons/16/vegetable_16.png' alt=''>";
+                } else if ($post_info->catigories === "dairy") {
+                    echo "<img src='../..//img/icons/16/meat_16.png' alt=''>";
+                } else if ($post_info->catigories === "fruit") {
+                    echo "<img src='../..//img/icons/16/fruit_16.png' alt=''>";
+                } else if ($post_info->catigories === "pastry") {
+                    echo "<img src='../..//img/icons/16/pastry_16.png' alt=''>";
+                } else if ($post_info->catigories === "seafood") {
+                    echo "<img src='../..//img/icons/16/seafood_16.png' alt=''>";
+                }
+                ?>
+                <span><?= $post_info->catigories ?></span>
+            </a>
+        </div>
+        <div class="signature">
+            <span class="ttl">
+                By chef:
+            </span>
+            <a href="" class="cate_btn">
+                <span class="profile_img" style="background-image : url('<?= URL . $chef->profile_img ?>')"></span>
+                <?= $chef->first_name . " " . $chef->last_name ?>
+            </a>
+        </div>
+    </div>
+</div>
+    <?php  
+        if(Session::get("user_id") === $chef->id) {?>
+
+            <form method="POST" action="<?= URL ?>/posts/modify/<?=$post_info->id?>" class="chng_post">
+                <button name="modify" class="btn btn-primary" >modify</button>
+                <button name="delete" class="btn btn-danger" onclick="return show_confirm()" >Delete</button>
+            </form>
+
+       <?php }elseif (Session::get("admin")){ ?>
+        <form method="POST" action="<?= URL ?>/posts/modify/<?=$post_info->id?>" class="chng_post">
+            <button name="delete" type="submit" onclick="return show_confirm()" class="btn btn-danger">Delete this post</button>
+       <?php } ?> 
+
+       
+
+    <script type="text/javascript">
+        function show_confirm() {
+           if(confirm("Delete the post?")) {
+               return true;
+           } else {
+               return false;
+           }
+        }    
+
+     </script>

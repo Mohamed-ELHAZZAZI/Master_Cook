@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="<?= URL ?>/css/posts/create.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <?php
+    if(Session::hasFlash()) {?>
+
+    <div id="message" class="alert alert-success alert-dismissible fade show size" role="alert">
+      <?php Session::flash()?>
+      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php } elseif(Session::hasError()) {?>
+
+    <div id="message" class="alert alert-danger alert-dismissible fade show size" role="alert">
+      <?php Session::error()?>
+      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php }elseif(Session::hasWarning()) {?>
+
+    <div id="message" class="alert alert-warningalert-dismissible fade show size" role="alert">
+      <?php Session::warning()?>
+      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php } ?>
+    <form method="POST" action="<?= URL ?>/posts/post" enctype="multipart/form-data" class="box_container">
+        <div class="main_box">
+
+            <label class="label_info" for="p_title">
+                <span>Post title:</span>
+                <input type="text" class="title" name="title" id="p_title" maxlength="35">
+            </label>
+            <!-------------------------------------------------------------------------------------------------------------------------->
+            <div class="label_info box">
+                <span>post image:</span>
+                <input type="file" class="input_file" name="image" accept=".png,.jpg,.jpeg,.jfif" id="post_img" alt="ERROR PLEASE TRY AGIN">
+                <div class="post_img" id="show_post_img">
+                    <div class="img_box">
+                        <img class="img_icon" src="<?= URL ?>/img/icons/add_img_icon.png" alt="">
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------------------------------------------------------->
+            <div class="video_section">
+                <input type="file" accept=".mp4" name="video" class="input_file" id="input-tag" />
+                <video class="video" width="400"  controls id="video-tag">
+                    <source id="video-source" src="">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="upload_btn" id="upload_vdo">upload video</button>
+            </div>
+
+            <label class="label_info time" for="p_time">
+                <span>Estimated cooking time:</span>
+                <input type="number" name="time" class="time" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="time" pattern="\d*" id="p_time" maxlength="3">
+                <span>min.</span>
+            </label>
+            <label for="desc" class="label_info">
+                <span>Discription:</span>
+                <textarea name="desc" id="desc" class="desc_area" cols="30" rows="10"></textarea>
+            </label>
+            <!------------------------------------------------------------------------------------>
+            <div class="categories_choice">
+                <span>Chouse Your categorie:</span>
+                <div class="categories">
+                    <input type="radio" name="categories" id="vegetable" class="cat_radio" value="vegetable">
+                    <label for="vegetable">
+                        <a class="cate_btn" href="#" id="vegetable_a">
+                            <img src="<?= URL ?>/img/icons/32/vegetable.png" alt="">
+                            <span>Vegetables</span>
+                        </a>
+                    </label>
+                    <input type="radio" name="categories" id="meat" class="cat_radio" value="meat">
+                    <label for="meat">
+                        <a class="cate_btn" id="meat_a" href="#">
+                            <img src="<?= URL ?>/img/icons/32/meat.png" alt="">
+                            <span>Meat</span>
+                        </a>
+                    </label>
+                    <input type="radio" name="categories" id="fruit" class="cat_radio" value="fruit">
+                    <label for="fruit">
+                        <a class="cate_btn" id="fruit_a" href="#">
+                            <img src="<?= URL ?>/img/icons/32/fruit.png" alt="">
+                            <span>Fruit</span>
+                        </a>
+                    </label>
+                    <input type="radio" name="categories" id="seafood" class="cat_radio" value="seafood">
+                    <label for="seafood">
+                        <a class="cate_btn" id="seafood_a" href="#">
+                            <img src="<?= URL ?>/img/icons/32/seafood.png" alt="">
+                            <span>Seafood</span>
+                        </a>
+                    </label>
+                    <input type="radio" name="categories" id="dairy" value="dairy" class="cat_radio">
+                    <label for="dairy" id="dairy_a">
+                        <a class="cate_btn" href="#">
+                            <img src="<?= URL ?>/img/icons/32/dairy.png" alt="">
+                            <span>Dairy</span>
+                        </a>
+                    </label>
+                    <input type="radio" name="categories" id="pastry" value="pastry" class="cat_radio">
+                    <label for="pastry">
+                        <a class="cate_btn" id="pastry_a" href="#">
+                            <img src="<?= URL ?>/img/icons/32/pastry.png" alt="">
+                            <span>Pastries</span>
+                        </a>
+                    </label>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="submit" id="submit_btn" name="create_post">submit</button>
+                <input type="reset" class="discard" class="cancel" value="Cancel">
+            </div>
+    </form>
+
