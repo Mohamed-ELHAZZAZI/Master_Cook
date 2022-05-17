@@ -23,7 +23,7 @@ class LoginController extends Controller
                 exit();
             }
 
-            $user = User::Where("email = ?", [$email]);
+            $user = User::Where("email = ?", [$email])[0];
 
             if ($user != null) {
 

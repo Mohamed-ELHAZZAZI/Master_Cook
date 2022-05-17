@@ -55,7 +55,7 @@ class User extends Model
         if ($where != "") {
             $sql .= " WHERE " . $where;
         }
-        $exists =  App::$db->query($sql, $params)->fetchAll(PDO::FETCH_CLASS, User::class)[0];
+        $exists =  App::$db->query($sql, $params)->fetchAll(PDO::FETCH_CLASS, User::class);
         if (isset($exists)) {
             return $exists;
         }else {

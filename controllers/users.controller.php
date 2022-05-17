@@ -141,39 +141,35 @@ class UsersController extends Controller
             echo "page not found";
             exit();
         }
-        $users = User::all();
-        // echo "<pre>";
-        // var_dump($users);
-        // exit();
+        if (isset($_POST["search"])) {
+            $search = $_POST["search"];
+           $users = User::Where("id LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ? OR email LIKE ? ", ['%'.$search.'%', '%'.$search.'%', '%'.$search.'%', '%'.$search.'%', '%'.$search.'%']);
+        }else {
+            $users = User::all();
+        }
+        
+
         $this->data["users"] = $users;
     }
-    public function admin_form()
-    {
+    public function admin_delete() {
         if (!Session::get("admin")) {
             echo "page not found";
             exit();
         }
         $id = $this->parms[0];
         if (isset($_POST["delete"])) {
-
-
-            if (!Session::get("admin")) {
-                echo "page not found";
-                exit();
-            }
-
-
             User::delete($id);
             Session::setFlash("User deleted!");
             header("location: " . URL . "/admin/users");
-        } elseif (isset($_POST["SetAdmin"])) {
-
-            if (!Session::get("admin")) {
-                echo "page not found";
-                exit();
-            }
-
-
+        }
+    }
+    public function admin_admin() {
+        if (!Session::get("admin")) {
+            echo "page not found";
+            exit();
+        }
+        $id = $this->parms[0];
+         if (isset($_POST["SetAdmin"])) {
             $user = User::find($id);
             if ($user->is_admin) {
                 $user->is_admin = false;
@@ -191,8 +187,18 @@ class UsersController extends Controller
             }
             Session::setWarning($msg);
             header("location: " . URL . "/admin/users");
+            exit ();
         }
         echo "Error";
+        exit();
+    }
+
+    public function admin_search()
+    {
+        if (isset($_POST['search'])) {
+            
+
+        }
         exit();
     }
 }

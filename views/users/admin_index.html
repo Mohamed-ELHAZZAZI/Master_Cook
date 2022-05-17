@@ -5,13 +5,15 @@ if(!isset($data["users"])) {
 ?>
 
 <nav class="navbar navbar-light bg-light">
-  <form class="form-inline">
+  <form class="form-inline" method="POST" action="<?= URL ?>/admin/users">
     <input
       class="form-control mr-sm-2"
       type="search"
       placeholder="Search"
       aria-label="Search"
-    />
+      name="search"
+      />
+      
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
       Search
     </button>
@@ -73,12 +75,11 @@ if(!isset($data["users"])) {
         <th scope="col">Last name</th>
         <th scope="col">User name</th>
         <th scope="col">Email</th>
-        <th scope="col" colspan="3">Statut</th>
+        <th scope="col" >Statut</th>
+        <th scope="col" colspan="2"></th>
         <th scope="col"></th>
         <th scope="col"></th>
-        <th scope="col"></th>
-        <!-- <th scope="col"></th>
-        <th scope="col"></th> -->
+
       </tr>
     </thead>
     <tbody>
@@ -93,15 +94,15 @@ if(!isset($data["users"])) {
           <?php
             if($users->is_admin) { echo "Admin"; }else{ echo "user"; } ?>
         </td>
-        <form
-          action="<?=URL?>/admin/users/form/<?= $users->id ?>"
-          method="POST"
-        >
           <!-- <input type="hidden" value="<?= $users->id ?>"> -->
-          <td>
+          <td <?php if(($users->id === Session::get("user_id"))) {echo "colspan = '4'"; }?>>
             <button type="button" class="btn btn-primary">Profile</button>
           </td>
           <?php if(($users->id != Session::get("user_id"))) { ?>
+            <form
+          action="<?=URL?>/admin/users/delete/<?= $users->id ?>"
+          method="POST"
+        >
           <td>
             <button
               type="submit"
@@ -112,16 +113,29 @@ if(!isset($data["users"])) {
               delete
             </button>
           </td>
+        </form>
+        <form
+          action="<?=URL?>/admin/users/admin/<?= $users->id ?>"
+          method="POST"
+        >
+          <td>
           <td>
             <button type="submit" onclick="return set_admin_user_confirm()" name="SetAdmin" class="btn btn-secondary">
               <?php  if($users->is_admin) { echo "Remove Admin"; }else { echo
               "Set to Admin"; } ?>
             </button>
           </td>
-          <?php }?>
         </form>
+          <?php }?>
       </tr>
-      <?php } ?>
+      <?php } 
+      
+      if (empty($data["users"])) { ?>
+        <tr>
+          <td colspan="9" class="not_found">No data founded</td>
+        </tr>
+        <?php }
+      ?>
     </tbody>
   </table>
 </div>
