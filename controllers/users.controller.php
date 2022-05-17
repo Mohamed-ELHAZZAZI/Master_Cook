@@ -192,13 +192,7 @@ class UsersController extends Controller
         echo "Error";
         exit();
     }
+    
 
-    public function admin_search()
-    {
-        if (isset($_POST['search'])) {
-            
 
-        }
-        exit();
-    }
 }

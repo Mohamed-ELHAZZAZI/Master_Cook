@@ -1,0 +1,151 @@
+<?php
+if(!isset($data["posts"])) {
+    echo "error try agian later";
+    exit();
+}
+?>
+
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline" method="POST" action="<?= URL ?>/admin/users">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+      name="search"
+    />
+
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+      Search
+    </button>
+  </form>
+</nav>
+<?php
+      if(Session::hasFlash()) {?>
+<div
+  id="message"
+  class="alert alert-success alert-dismissible fade show"
+  role="alert"
+>
+  <?php Session::flash()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
+</div>
+<?php } elseif(Session::hasError()) {?>
+
+<div
+  id="message"
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert"
+>
+  <?php Session::error()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
+</div>
+<?php }elseif(Session::hasWarning()) {?>
+
+<div
+  id="message"
+  class="alert alert-warning alert-dismissible fade show"
+  role="alert"
+>
+  <?php Session::warning()?>
+  <button
+    id="remove_btn"
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+  ></button>
+</div>
+<?php } ?>
+
+<div class="table_container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Discription</th>
+        <th scope="col">Image</th>
+        <th scope="col" colspan="2"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach($data["posts"] as $posts) {?>
+      <tr>
+        <th scope="row"><?= $posts->id ?></th>
+        <td><?= $posts->title ?></td>
+        <td><?= $posts->discription ?></td>
+        <td>
+          <img class="post_image" src="<?= URL . $posts->image ?>" alt="" />
+        </td>
+        <td></td>
+        <!-- <input type="hidden" value="<?= $users->id ?>"> -->
+        <td>
+          <button type="button" class="btn btn-primary">view</button>
+        </td>
+        <form
+          action="<?=URL?>/admin/posts/delete/<?= $posts->id ?>"
+          method="POST"
+        >
+          <td>
+            <button
+              type="submit"
+              name="delete"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
+          </td>
+        </form>
+
+
+
+
+        <form
+          action="<?=URL?>/admin/posts/accepte/<?= $posts->id ?>"
+          method="POST"
+        >
+          <td>
+            <button
+              type="submit"
+              name="accepte"
+              class="btn btn-outline-success"
+            >
+              accepte
+            </button>
+          </td>
+        </form>
+
+
+
+
+      </tr>
+      <?php } 
+      
+      if (empty($data["posts"])) { ?>
+      <tr>
+        <td colspan="9" class="not_found">No data founded</td>
+      </tr>
+      <?php }
+      ?>
+    </tbody>
+  </table>
+</div>
+<button
+  type="button"
+  onclick="window.location.href = '<?= URL ?>'"
+  class="btn btn-secondary"
+>
+  Go to main page
+</button>

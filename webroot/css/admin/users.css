@@ -40,6 +40,6 @@ body {
 .not_found {
   text-align: center;
 }
-th, td {
-  text-align: center;
+.post_image {
+  width: 150px;
 }

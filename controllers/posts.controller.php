@@ -226,4 +226,47 @@ class PostsController extends Controller
         }
         exit();
     }
+
+    public function admin_index() {
+        if (!Session::get("admin")) {
+            echo "page not found";
+            exit();
+        }
+        if (isset($_POST["search"])) {
+            $search = $_POST["search"];
+        }else {
+            $posts =Post::Where("is_confirmed = ?", [0]);
+        }
+
+        $this->data["posts"] = $posts;
+    }
+    public function admin_delete() {
+        if (!Session::get("admin")) {
+            echo "page not found";
+            exit();
+        }
+        $id = $this->parms[0];
+        if (isset($_POST["delete"])) {
+            Post::delete($id);
+            Session::setFlash("Posts id= " . $id . " Deleted");
+            header("location: " . URL . "/admin/posts");
+        }
+        exit();
+    }
+
+    public function admin_accepte()
+    {
+        if (!Session::get("admin")) {
+            echo "page not found";
+            exit();
+        }
+        $id = $this->parms[0];
+        if (isset($_POST["accepte"])) {
+            Post::chng_statut([1 , $id]);
+            Session::setFlash("Posts id= " . $id . " Accepted");
+            header("location: " . URL . "/admin/posts");
+        }
+        exit();
+    }
+
 }

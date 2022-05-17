@@ -12,8 +12,8 @@ class Post extends Model
 
     public static function getAllPosts()
     {
-        $sql = "SELECT * FROM postes ORDER BY id DESC";
-        return App::$db->query($sql)->fetchAll(PDO::FETCH_CLASS, Post::class);
+        $sql = "SELECT * FROM postes WHERE is_confirmed = ? ORDER BY id DESC";
+        return App::$db->query($sql, [1])->fetchAll(PDO::FETCH_CLASS, Post::class);
     }
 
     /**
@@ -32,6 +32,20 @@ class Post extends Model
     }
 
 
+    public static function Where($where = "", $params = [])
+    {
+        $sql = "SELECT * FROM postes ";
+        if ($where != "") {
+            $sql .= " WHERE " . $where;
+        }
+        $exists =  App::$db->query($sql, $params)->fetchAll(PDO::FETCH_CLASS, Post::class);
+        if (isset($exists)) {
+            return $exists;
+        } else {
+            return null;
+        }
+    }
+
 
     public static function setPost($owner_id, $title, $desc, $time, $categories, $image, $video)
     {
@@ -49,5 +63,21 @@ class Post extends Model
     {
         $sql = "DELETE FROM postes WHERE id = ?";
         return App::$db->query($sql, [$id]);
+    }
+
+
+    /**
+     * @return mixed;
+     * 
+     */
+
+    public static function chng_statut($param = [])
+    {
+        $sql = "UPDATE postes SET is_confirmed = ? Where id = ?";
+        $post = App::$db->query($sql, $param)->fetchAll(PDO::FETCH_CLASS, Post::class);
+        if (isset($post[0]))
+            return  $post[0];
+        else
+            return null;
     }
 }
