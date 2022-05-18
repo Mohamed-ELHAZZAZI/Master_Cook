@@ -11,6 +11,11 @@ class PostsController extends Controller
             echo "post not found";
             exit();
         }
+        if (!$post->is_confirmed) {
+            Session::setError("Post not confirmed");
+            header("location: " . URL);
+            exit();
+        }
         $this->data["chef"] = User::find($post->owner_id);
         $this->data["post"] = $post;
     }
@@ -86,8 +91,8 @@ class PostsController extends Controller
                         if (move_uploaded_file($file_temp, $path)) {
                             $video = "/upload/media/posts_video/" . $file_name;
                             Post::setPost($owner_id, $title, $desc, $time, $categories, $image, $video);
-                            Session::setFlash("Post created");
-                            header("location: " . URL . "/posts/show/" . Session::get("last_id"));
+                            Session::setFlash("Post created, Please wait for the confirmation");
+                            header("location: " . URL );
                         }
                     } else {
                         Session::setError("Only mp4 is accepted");
@@ -106,23 +111,34 @@ class PostsController extends Controller
         exit();
     }
 
+    public function delete()
+    {
+        $id = $this->parms[0];
+        $post = Post::getPost($id);
+        if (Session::get("user_id") != $post->owner_id && !Session::get("admin")) {
+            header("location: " . URL . "/posts/show/" . $post->id);
+            exit();
+        }
+        Post::delete($id);
+        Session::setFlash("Post deleted");
+        header("location: " . URL);
+        exit();
+    }
+
+
+
     public function modify()
     {
-        if (isset($_POST["delete"])) {
-            $id = $this->parms[0];
-            Post::delete($id);
-            Session::setFlash("Post deleted");
-
-            header("location: " . URL);
-
+        $id = $this->parms[0];
+        $post = Post::getPost($id);
+        if (Session::get("user_id") != $post->owner_id) {
+            header("location: " . URL . "/posts/show/" . $post->id);
             exit();
-        } else {
-            $id = $this->parms[0];
-            $post = Post::getPost($id);
-            $this->data["post"] = $post;
-            
         }
+
+        $this->data["post"] = $post;
     }
+
 
     public function update()
     {
@@ -227,20 +243,22 @@ class PostsController extends Controller
         exit();
     }
 
-    public function admin_index() {
+    public function admin_index()
+    {
         if (!Session::get("admin")) {
             echo "page not found";
             exit();
         }
         if (isset($_POST["search"])) {
             $search = $_POST["search"];
-        }else {
-            $posts =Post::Where("is_confirmed = ?", [0]);
+        } else {
+            $posts = Post::Where("is_confirmed = ?", [0]);
         }
 
         $this->data["posts"] = $posts;
     }
-    public function admin_delete() {
+    public function admin_delete()
+    {
         if (!Session::get("admin")) {
             echo "page not found";
             exit();
@@ -262,11 +280,10 @@ class PostsController extends Controller
         }
         $id = $this->parms[0];
         if (isset($_POST["accepte"])) {
-            Post::chng_statut([1 , $id]);
+            Post::chng_statut([1, $id]);
             Session::setFlash("Posts id= " . $id . " Accepted");
             header("location: " . URL . "/admin/posts");
         }
         exit();
     }
-
 }
