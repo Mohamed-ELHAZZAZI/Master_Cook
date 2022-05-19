@@ -4,8 +4,12 @@ class PagesController extends Controller
 {
     public function index()
     {
-        // $this->data['test_content'] =  "Here will be a pages lists";
-        $postes = Post::getAllPosts();
+        if (isset($_POST["search_btn"])) {
+            $postes = Post::Where("(title LIKE ? OR discription LIKE ? ) AND is_confirmed = ?" , ['%'.$_POST["search"].'%' , '%'.$_POST["search"].'%' , 1]);
+            
+        }else {
+            $postes = Post::getAllPosts();
+        }
         $this->data["postes"] = $postes;
     }
     public function view()
