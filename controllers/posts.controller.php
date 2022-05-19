@@ -271,7 +271,7 @@ class PostsController extends Controller
         $id = $this->parms[0];
         if (isset($_POST["delete"])) {
             Post::delete($id);
-            Session::setFlash("Posts id= " . $id . " Deleted");
+            Session::setFlash("Post Deleted");
             header("location: " . URL . "/admin/posts");
         }
         exit();
@@ -286,7 +286,7 @@ class PostsController extends Controller
         $id = $this->parms[0];
         if (isset($_POST["accepte"])) {
             Post::chng_statut([1, $id]);
-            Session::setFlash("Posts id= " . $id . " Accepted");
+            Session::setFlash("Post Accepted");
             header("location: " . URL . "/admin/posts");
         }
         exit();
@@ -299,7 +299,7 @@ class PostsController extends Controller
         $id = $this->parms[0];
         if (isset($_POST["unconfirm"])) {
             Post::chng_statut([0, $id]);
-            Session::setFlash("Posts id= " . $id . " Unconfirmd");
+            Session::setFlash("Post  Unconfirmd");
             header("location: " . URL );
         }
 

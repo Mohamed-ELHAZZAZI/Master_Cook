@@ -23,8 +23,25 @@
                     <span class="logo">Master<span class="sec_logo">cook</span></span>
                 </a>
                 <div class="search_div">
-                    <input type="text" name="search_bar" class="search_input" id="search_bar" placeholder="Search">
-                    <i class="fas fa-search"></i>
+                    <!-- <input type="text" name="search_bar" class="search_input" id="search_bar" placeholder="Search">
+                    <button><i class="fas fa-search"></i></button> -->
+
+                    
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline" method="POST" action="<?= URL ?>/admin/posts">
+      <input
+        class="search-input  form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        name="search"
+      />
+  
+      <button class="search-btn btn btn-outline-primary my-2 my-sm-0" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </nav>
                 </div>
             </div>
             <!--right  nav part-->
