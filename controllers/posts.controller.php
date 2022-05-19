@@ -11,7 +11,7 @@ class PostsController extends Controller
             echo "post not found";
             exit();
         }
-        if (!$post->is_confirmed) {
+        if (!$post->is_confirmed ) {
             Session::setError("Post not confirmed");
             header("location: " . URL);
             exit();
@@ -92,7 +92,7 @@ class PostsController extends Controller
                             $video = "/upload/media/posts_video/" . $file_name;
                             Post::setPost($owner_id, $title, $desc, $time, $categories, $image, $video);
                             Session::setFlash("Post created, Please wait for the confirmation");
-                            header("location: " . URL );
+                            header("location: " . URL);
                         }
                     } else {
                         Session::setError("Only mp4 is accepted");
@@ -274,6 +274,7 @@ class PostsController extends Controller
 
     public function admin_accepte()
     {
+        
         if (!Session::get("admin")) {
             echo "page not found";
             exit();
@@ -286,4 +287,19 @@ class PostsController extends Controller
         }
         exit();
     }
+    public function unconfirm() {
+        if (!Session::get("admin")) {
+            echo "page not found";
+            exit();
+        }
+        $id = $this->parms[0];
+        if (isset($_POST["unconfirm"])) {
+            Post::chng_statut([0, $id]);
+            Session::setFlash("Posts id= " . $id . " Unconfirmd");
+            header("location: " . URL );
+        }
+
+    }
+
+    
 }

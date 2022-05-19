@@ -91,26 +91,26 @@ if(!isset($data["posts"])) {
         </td>
         <td></td>
         <!-- <input type="hidden" value="<?= $users->id ?>"> -->
-        <td>
-          <button type="button" class="btn btn-primary">view</button>
-        </td>
+
+        <!-- <form
+          action="<?=URL?>/admin/posts/view/<?= $posts->id ?>"
+          method="POST"
+        > -->
+          <td>
+            <button onclick="window.location.href = '<?=URL?>/admin/posts/view/<?= $posts->id ?>' " type="button" name="view" class="btn btn-primary">view</button>
+          </td>
+        <!-- </form> -->
+
         <form
           action="<?=URL?>/admin/posts/delete/<?= $posts->id ?>"
           method="POST"
         >
           <td>
-            <button
-              type="submit"
-              name="delete"
-              class="btn btn-danger"
-            >
+            <button type="submit" name="delete" class="btn btn-danger">
               Delete
             </button>
           </td>
         </form>
-
-
-
 
         <form
           action="<?=URL?>/admin/posts/accepte/<?= $posts->id ?>"
@@ -126,10 +126,6 @@ if(!isset($data["posts"])) {
             </button>
           </td>
         </form>
-
-
-
-
       </tr>
       <?php } 
       
