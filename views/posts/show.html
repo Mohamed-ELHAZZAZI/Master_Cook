@@ -103,9 +103,16 @@ $chef  = $data["chef"];
             <form method="POST" action="<?= URL ?>/posts/delete/<?=$post_info->id?>" >
                 <button name="delete" type="submit" onclick="return show_confirm()" class="btn btn-danger">Delete this post</button>
             </form>
-             <form method="POST" action="<?= URL ?>/posts/unconfirm/<?=$post_info->id?>" >
-                    <button name="unconfirm" type="submit" onclick="return show_confirm()" class="btn btn-danger">unconfirm</button>
-            </form>
+             <?php if ($post_info->is_confirmed){ ?>
+                <form method="POST" action="<?= URL ?>/posts/unconfirm/<?=$post_info->id?>" >
+                    <button name="unconfirm" type="submit" onclick="return show_confirm()" class="btn btn-dark">unconfirm</button>
+                </form>
+            <?php }else {?>
+                <form method="POST" action="<?=URL?>/admin/posts/accepte/<?= $post_info->id ?>" >
+                    <button name="accepte" type="submit" onclick="return show_confirm()" class="btn btn-dark">confirm</button>
+                </form>
+            <?php } ?> 
+
         </div>
        <?php } ?> 
 

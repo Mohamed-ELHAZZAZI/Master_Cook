@@ -11,13 +11,15 @@ class PostsController extends Controller
             echo "post not found";
             exit();
         }
-        if (!$post->is_confirmed ) {
+        if ($post->is_confirmed || (Session::get("admin") && isset($_POST["view"])) ) {
+            
+            $this->data["chef"] = User::find($post->owner_id);
+            $this->data["post"] = $post;
+        }else {
             Session::setError("Post not confirmed");
             header("location: " . URL);
             exit();
         }
-        $this->data["chef"] = User::find($post->owner_id);
-        $this->data["post"] = $post;
     }
 
     public function create()
@@ -274,7 +276,6 @@ class PostsController extends Controller
 
     public function admin_accepte()
     {
-        
         if (!Session::get("admin")) {
             echo "page not found";
             exit();

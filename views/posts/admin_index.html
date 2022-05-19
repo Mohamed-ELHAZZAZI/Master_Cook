@@ -92,14 +92,15 @@ if(!isset($data["posts"])) {
         <td></td>
         <!-- <input type="hidden" value="<?= $users->id ?>"> -->
 
-        <!-- <form
-          action="<?=URL?>/admin/posts/view/<?= $posts->id ?>"
+        <form
+          action="<?=URL?>/posts/show/<?= $posts->id ?>"
           method="POST"
-        > -->
+        >
           <td>
-            <button onclick="window.location.href = '<?=URL?>/admin/posts/view/<?= $posts->id ?>' " type="button" name="view" class="btn btn-primary">view</button>
+            <!-- onclick="window.location.href = '<?=URL?>/posts/show/<?= $posts->id ?>'" -->
+            <button  type="submit" name="view" class="btn btn-primary">view</button>
           </td>
-        <!-- </form> -->
+        </form>
 
         <form
           action="<?=URL?>/admin/posts/delete/<?= $posts->id ?>"
