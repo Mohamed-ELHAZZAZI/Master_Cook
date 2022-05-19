@@ -7,6 +7,8 @@ config::set('site_name', 'Your site name');
 config::set('routes', array (
     'default' => '',
     'admin' => 'admin_',
+    'ajax' => 'ajax_',
+    'print' => 'print_',
 ));
 
 Config::set('default_route','default');

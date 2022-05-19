@@ -1,5 +1,5 @@
 <section class="body_container">
-    <!-- <div class="categories">
+  <!-- <div class="categories">
         <a class="cate_btn" href="#">
             <img src="<?= URL ?>/img/icons/32/vegetable.png" alt="">
             <span>Vegetables</span>
@@ -25,119 +25,264 @@
             <span>Pastries</span>
         </a>
     </div> -->
-    
 
-    <div class="categories">
-        <input type="radio" name="categories" id="vegetable" class="cat_radio" value="vegetable">
-        <label for="vegetable">
-            <a class="cate_btn" href="#" id="vegetable_a">
-                <img src="<?= URL ?>/img/icons/32/vegetable.png" alt="">
-                <span>Vegetables</span>
-            </a>
-        </label>
-        <input type="radio" name="categories" id="meat" class="cat_radio" value="meat">
-        <label for="meat">
-            <a class="cate_btn" id="meat_a" href="#">
-                <img src="<?= URL ?>/img/icons/32/meat.png" alt="">
-                <span>Meat</span>
-            </a>
-        </label>
-        <input type="radio" name="categories" id="fruit" class="cat_radio" value="fruit">
-        <label for="fruit">
-            <a class="cate_btn" id="fruit_a" href="#">
-                <img src="<?= URL ?>/img/icons/32/fruit.png" alt="">
-                <span>Fruit</span>
-            </a>
-        </label>
-        <input type="radio" name="categories" id="seafood" class="cat_radio" value="seafood">
-        <label for="seafood">
-            <a class="cate_btn" id="seafood_a" href="#">
-                <img src="<?= URL ?>/img/icons/32/seafood.png" alt="">
-                <span>Seafood</span>
-            </a>
-        </label>
-        <input type="radio" name="categories" id="dairy" value="dairy" class="cat_radio">
-        <label for="dairy" id="dairy_a">
-            <a class="cate_btn" href="#">
-                <img src="<?= URL ?>/img/icons/32/dairy.png" alt="">
-                <span>Dairy</span>
-            </a>
-        </label>
-        <input type="radio" name="categories" id="pastry" value="pastry" class="cat_radio">
-        <label for="pastry">
-            <a class="cate_btn" id="pastry_a" href="#">
-                <img src="<?= URL ?>/img/icons/32/pastry.png" alt="">
-                <span>Pastries</span>
-            </a>
-        </label>
-    </div>
-    
-    <div class="main-container">
-        <hr class="publicity_line">
-        <?php
+  <div class="categories">
+    <input
+      type="radio"
+      name="categories"
+      id="vegetable"
+      class="cat_radio"
+      value="vegetable"
+    />
+    <label for="vegetable">
+      <a class="cate_btn" href="#" id="vegetable_a">
+        <img src="<?= URL ?>/img/icons/32/vegetable.png" alt="" />
+        <span>Vegetables</span>
+      </a>
+    </label>
+    <input
+      type="radio"
+      name="categories"
+      id="meat"
+      class="cat_radio"
+      value="meat"
+    />
+    <label for="meat">
+      <a class="cate_btn" id="meat_a" href="#">
+        <img src="<?= URL ?>/img/icons/32/meat.png" alt="" />
+        <span>Meat</span>
+      </a>
+    </label>
+    <input
+      type="radio"
+      name="categories"
+      id="fruit"
+      class="cat_radio"
+      value="fruit"
+    />
+    <label for="fruit">
+      <a class="cate_btn" id="fruit_a" href="#">
+        <img src="<?= URL ?>/img/icons/32/fruit.png" alt="" />
+        <span>Fruit</span>
+      </a>
+    </label>
+    <input
+      type="radio"
+      name="categories"
+      id="seafood"
+      class="cat_radio"
+      value="seafood"
+    />
+    <label for="seafood">
+      <a class="cate_btn" id="seafood_a" href="#">
+        <img src="<?= URL ?>/img/icons/32/seafood.png" alt="" />
+        <span>Seafood</span>
+      </a>
+    </label>
+    <input
+      type="radio"
+      name="categories"
+      id="dairy"
+      value="dairy"
+      class="cat_radio"
+    />
+    <label for="dairy" id="dairy_a">
+      <a class="cate_btn" href="#">
+        <img src="<?= URL ?>/img/icons/32/dairy.png" alt="" />
+        <span>Dairy</span>
+      </a>
+    </label>
+    <input
+      type="radio"
+      name="categories"
+      id="pastry"
+      value="pastry"
+      class="cat_radio"
+    />
+    <label for="pastry">
+      <a class="cate_btn" id="pastry_a" href="#">
+        <img src="<?= URL ?>/img/icons/32/pastry.png" alt="" />
+        <span>Pastries</span>
+      </a>
+    </label>
+  </div>
+
+  <div class="main-container">
+    <hr class="publicity_line" />
+    <?php
     if(Session::hasFlash()) {?>
 
-    <div id="message" class="alert alert-success alert-dismissible fade show size" role="alert">
+    <div
+      id="message"
+      class="alert alert-success alert-dismissible fade show size"
+      role="alert"
+    >
       <?php Session::flash()?>
-      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <button
+        id="remove_btn"
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+      ></button>
     </div>
     <?php } elseif(Session::hasError()) {?>
 
-    <div id="message" class="alert alert-danger alert-dismissible fade show size" role="alert">
+    <div
+      id="message"
+      class="alert alert-danger alert-dismissible fade show size"
+      role="alert"
+    >
       <?php Session::error()?>
-      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <button
+        id="remove_btn"
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+      ></button>
     </div>
     <?php }elseif(Session::hasWarning()) {?>
 
-    <div id="message" class="alert alert-warning alert-dismissible fade show size" role="alert">
+    <div
+      id="message"
+      class="alert alert-warning alert-dismissible fade show size"
+      role="alert"
+    >
       <?php Session::warning()?>
-      <button id="remove_btn" type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      <button
+        id="remove_btn"
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+      ></button>
     </div>
     <?php } ?>
-        <div class="publicity_container">
-            <?php foreach ($data["postes"] as $post) { ?>
-                <div class="cnt">
-                    <a href="<?=URL?>/posts/show/<?= $post->id ?>" class="img_container">
+    <div class="publicity_container">
+      <?php foreach ($data["postes"] as $post) { ?>
+      <div class="cnt">
+        <a href="<?=URL?>/posts/show/<?= $post->id ?>" class="img_container">
+          <div
+            style="background-image: url('<?= URL . $post->image ?>')"
+            class="img"
+          ></div>
+        </a>
+        <div class="cook">
+          <div class="cook_info">
+            <div class="about_cook">
+              <a href="<?=URL?>/posts/show/<?= $post->id ?>" class="title_link"
+                ><span class="cook_title"><?= $post->title ?></span></a
+              >
+              <span class="cook_duration"
+                ><i class="fas fa-clock duration_icon"></i
+                ><?= $post->estimated_time ?> min</span
+              >
+            </div>
+
+            <?php if (Session::get("user_id") != null) {?>
+            <button class="like_btn" id="like">
+              <i class="fas fa-heart heart_icon"></i>
+            </button>
+            <?php
+                            }
+                            ?>
+          </div>
+          <div class="tag">
+            <div class="tag_sec">
+              <?php
+
+                if ($post->catigories === "meat") { 
+                    echo "<img src='../img/icons/16/meat_16.png'alt=''/>"; 
+                } else if ($post->catigories === "vegetable") { 
+                  echo "<img src='../img/icons/16/vegetable_16.png'alt=''/>"; 
+                } else if ($post->catigories === "pastry") { 
+                  echo "<img src='../img/icons/16/pastry_16.png'alt=''/>"; 
+                } else if ($post->catigories === "seafood") { 
+                  echo "<img src='../img/icons/16/seafood_16.png' alt=''/>"; 
+                }  else if ($post->catigories === "dairy") { 
+                    echo "<img src='../img/icons/16/dairy_16.png' alt=''/>"; 
+                  }else if ($post->catigories === "fruit") { 
+                    echo "<img src='../img/icons/16/fruit_16.png' alt=''/>"; 
+                  }
+                
+                ?>
+              <span><?= $post->catigories ?></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <?php } ?>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function () {
+    $(".cat_radio").on("change", function () {
+      var value = $(this).val();
+
+      $.ajax({
+        url: "<?= URL ?>/ajax/categories/filter",
+        type: "POST",
+        data: "category=" + value,
+        beforeSend: function () {
+          $(".publicity_container").html(
+            "<div class='spinner-border text-primary'></div>"
+          );
+        },
+        success: function (posts) {
+          var filtered_posts = "";
+          var URL = "<?=URL?>";
+          var user_id = "Session::get('user_id')";
+          for (let index = 0; index < posts.length; index++) {
+            filtered_posts += `
+                     <div class="cnt">
+                    <a href="${URL}/posts/show/${posts[index].id}" class="img_container">
                         <div style="background-image: url('<?= URL . $post->image ?>')" class="img"></div>
                     </a>
                     <div class="cook">
                         <div class="cook_info">
                             <div class="about_cook">
-                                <a href="<?=URL?>/posts/show/<?= $post->id ?>" class="title_link"><span class="cook_title"><?= $post->title ?></span></a>
+                                <a href="${URL}/posts/show/${posts[index].id}" class="title_link"><span class="cook_title">${posts[index].title}</span></a>
                                 <span class="cook_duration"><i class="fas fa-clock duration_icon"></i><?= $post->estimated_time ?> min</span>
                             </div>
 
-                            <?php if (Session::get("user_id") != null) {?>
-                                <button class="like_btn" id="like"><i class="fas fa-heart heart_icon"></i></button>
-                            <?php
-                            }
-                            ?>
+                            `;
+            if (user_id != null) {
+              filtered_posts += `  <button class="like_btn" id="like"><i class="fas fa-heart heart_icon"></i></button>
+                          `;
+            }
+            filtered_posts += `
+
                         </div>
                         <div class="tag">
-                            <div class="tag_sec">
+                            <div class="tag_sec">`;
 
-                                <?php
-
-                                if ($post->catigories === "meat") {
-                                    echo "<img src='../img/icons/16/meat_16.png' alt=''>";
-                                } else if ($post->catigories === "vegetable") {
-                                    echo "<img src='../img/icons/16/vegetable_16.png' alt=''>";
-                                } else if ($post->catigories === "dairy") {
-                                    echo "<img src='../img/icons/16/dairy_16.png' alt=''>";
-                                } else if ($post->catigories === "fruit") {
-                                    echo "<img src='../img/icons/16/fruit_16.png' alt=''>";
-                                } else if ($post->catigories === "pastry") {
-                                    echo "<img src='../img/icons/16/pastry_16.png' alt=''>";
-                                } else if ($post->catigories === "seafood") {
-                                    echo "<img src='../master%20cook/icons/16/seafood_16.png' alt=''>";
+                                if (`${posts[index].catigories}` === "meat") {
+                                    filtered_posts +=  `<img src='../img/icons/16/meat_16.png' alt=''>`;
+                                } else if (`${posts[index].catigories}` === "vegetable") {
+                                    filtered_posts +=   `<img src='../img/icons/16/vegetable_16.png' alt=''>`;
+                                } else if (`${posts[index].catigories}`=== "dairy") {
+                                    filtered_posts +=   `<img src='../img/icons/16/dairy_16.png' alt=''>`;
+                                } else if (`${posts[index].catigories}` === "fruit") {
+                                    filtered_posts +=   `<img src='../img/icons/16/fruit_16.png' alt=''>`;
+                                } else if (`${posts[index].catigories}` === "pastry") {
+                                    filtered_posts +=   `<img src='../img/icons/16/pastry_16.png' alt=''>`;
+                                } else if (`${posts[index].catigories}` === "seafood") {
+                                    filtered_posts +=   `<img src='../master%20cook/icons/16/seafood_16.png' alt=''>`;
                                 }
-                                ?>
-                                <span><?= $post->catigories ?></span>
+
+            filtered_posts += `
+                                <span>${posts[index].catigories}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
-    </div>
-</section>
+                     `;
+          }
+          $(".publicity_container").html(filtered_posts);
+        },
+        
+        dataType: "json",
+      });
+    });
+  });
+</script>
