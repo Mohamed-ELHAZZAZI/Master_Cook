@@ -251,8 +251,11 @@ class PostsController extends Controller
             echo "page not found";
             exit();
         }
+
+
         if (isset($_POST["search"])) {
             $search = $_POST["search"];
+            $posts = Post::Where("(id LIKE ? OR title LIKE ? OR discription LIKE ?) AND  is_confirmed = ?" , ['%'.$search.'%' , '%'.$search.'%', '%'.$search.'%'  , 0] );
         } else {
             $posts = Post::Where("is_confirmed = ?", [0]);
         }
