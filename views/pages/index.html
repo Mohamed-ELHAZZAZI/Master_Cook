@@ -1,31 +1,5 @@
 <section class="body_container">
-  <!-- <div class="categories">
-        <a class="cate_btn" href="#">
-            <img src="<?= URL ?>/img/icons/32/vegetable.png" alt="">
-            <span>Vegetables</span>
-        </a>
-        <a class="cate_btn" href="#">
-            <img src="<?= URL ?>/img/icons/32/meat.png" alt="">
-            <span>Meat</span>
-        </a>
-        <a class="cate_btn" href="#">
-            <img src="<?= URL ?>/img/icons/32/fruit.png" alt="">
-            <span>Fruit</span>
-        </a>
-        <a class="cate_btn" href="#">
-            <img src="<?= URL ?>/img/icons/32/seafood.png" alt="">
-            <span>Seafood</span>
-        </a>
-        <a class="cate_btn" href="#">
-            <img src="<?= URL ?>/img/icons/32/dairy.png" alt="">
-            <span>Dairy</span>
-        </a>
-        <a class="cate_btn" href="#">
-            <img src="<?= URL ?>/img/icons/32/pastry.png" alt="">
-            <span>Pastries</span>
-        </a>
-    </div> -->
-
+ 
   <div class="categories">
     <input
       type="radio"
@@ -236,13 +210,13 @@
             filtered_posts += `
                      <div class="cnt">
                     <a href="${URL}/posts/show/${posts[index].id}" class="img_container">
-                        <div style="background-image: url('<?= URL . $post->image ?>')" class="img"></div>
+                        <div style="background-image: url('${posts[index].image}')" class="img"></div>
                     </a>
                     <div class="cook">
                         <div class="cook_info">
                             <div class="about_cook">
                                 <a href="${URL}/posts/show/${posts[index].id}" class="title_link"><span class="cook_title">${posts[index].title}</span></a>
-                                <span class="cook_duration"><i class="fas fa-clock duration_icon"></i><?= $post->estimated_time ?> min</span>
+                                <span class="cook_duration"><i class="fas fa-clock duration_icon"></i>${posts[index].estimated_time} min</span>
                             </div>
 
                             `;
@@ -267,7 +241,7 @@
                                 } else if (`${posts[index].catigories}` === "pastry") {
                                     filtered_posts +=   `<img src='../img/icons/16/pastry_16.png' alt=''>`;
                                 } else if (`${posts[index].catigories}` === "seafood") {
-                                    filtered_posts +=   `<img src='../master%20cook/icons/16/seafood_16.png' alt=''>`;
+                                    filtered_posts +=   `<img src='../img/icons/16/seafood_16.png' alt=''>`;
                                 }
 
             filtered_posts += `

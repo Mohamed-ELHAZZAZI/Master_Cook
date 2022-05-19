@@ -34,7 +34,7 @@ class Post extends Model
 
     public static function Where($where = "", $params = [])
     {
-        $sql = "SELECT * FROM postes ";
+        $sql = "SELECT * FROM postes";
         if ($where != "") {
             $sql .= " WHERE " . $where;
         }
