@@ -674,3 +674,18 @@ input[type="search"]::-webkit-search-results-decoration {
 input[type="radio"]:checked + label {
   border: 2px solid #4e06ff;
 }
+
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 50px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #4e60ff9c;
+  border-radius:50px;
+}

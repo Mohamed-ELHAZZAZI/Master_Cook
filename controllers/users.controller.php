@@ -60,7 +60,7 @@ class UsersController extends Controller
             if (!Helper::isEmpty([$_POST["first_name"], $_POST["last_name"], $_POST["username"], $_POST["email"]])) {
 
                 if (!Helper::email_check($_POST["email"])) {
-                    Session::setError("Invalid username format");
+                    Session::setError("Invalid email format");
                     header("location: " . URL . "/users/profile");
                     exit();
                 }

@@ -10,3 +10,4 @@ class CategoriesController extends Controller {
         }
     }
 }
+
