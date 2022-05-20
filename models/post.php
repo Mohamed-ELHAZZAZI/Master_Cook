@@ -2,7 +2,7 @@
 
 class Post extends Model
 {
-    public $owner_id, $title, $desc, $time, $categories, $image, $video;
+    public $owner_id, $title, $desc, $time, $categories, $image, $video , $is_confirmed;
 
 
     /**
@@ -55,8 +55,8 @@ class Post extends Model
 
     public function update()
     {
-        $sql = "UPDATE   postes SET owner_id = ? , title = ? ,discription = ? ,estimated_time = ? ,catigories = ? ,image = ? ,video = ? WHERE id = ?";
-        return App::$db->query($sql, [$this->owner_id, $this->title, $this->desc, $this->time, $this->categories, $this->image, $this->video, $this->id]);
+        $sql = "UPDATE   postes SET owner_id = ? , title = ? ,discription = ? ,estimated_time = ? ,catigories = ? ,image = ? ,video = ? , is_confirmed = ? WHERE id = ?";
+        return App::$db->query($sql, [$this->owner_id, $this->title, $this->desc, $this->time, $this->categories, $this->image, $this->video,$this->is_confirmed, $this->id ]);
     }
 
     public static function delete($id)

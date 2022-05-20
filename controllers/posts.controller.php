@@ -11,11 +11,11 @@ class PostsController extends Controller
             echo "post not found";
             exit();
         }
-        if ($post->is_confirmed || (Session::get("admin") && isset($_POST["view"])) ) {
-            
+        if ($post->is_confirmed || (Session::get("admin") && isset($_POST["view"]))) {
+
             $this->data["chef"] = User::find($post->owner_id);
             $this->data["post"] = $post;
-        }else {
+        } else {
             Session::setError("Post not confirmed");
             header("location: " . URL);
             exit();
@@ -183,6 +183,7 @@ class PostsController extends Controller
                 $post->title =  $_POST["title"];
                 $post->estimated_time =  $_POST["time"];
                 $post->discription =  $_POST["disc"];
+                $post->is_confirmed = 0;
             } else {
                 Session::setError("Please fill all the blankc");
                 header("location: " . URL . "/posts/modify/" . $id);
@@ -224,7 +225,7 @@ class PostsController extends Controller
                     $allowed_ext = array("mp4");
                     $exp = explode(".", $_FILES['video']['name']);
                     $ext = end($exp);
-                    $file_name = $post->title . "_owner_id_" . $post->owner_id . "." . $ext;
+                    $file_name = $post->title . "_owner_id_" . $post->owner_id . "." . $ext;`
                     $path = ROOT . S . "webroot" . S . "upload" . S . "media" . S . "posts_video" . S . $file_name;
                     if (in_array($ext, $allowed_ext)) {
                         if (move_uploaded_file($file_temp, $path)) {
@@ -237,10 +238,9 @@ class PostsController extends Controller
                 }
             }
 
-
             $post->update();
-            Session::setFlash("Post updated");
-            header("location: " . URL . "/posts/show/" . $post->id);
+            Session::setFlash("Post updated, please wait for the confirmation");
+            header("location: " . URL );
         }
         exit();
     }
@@ -255,7 +255,7 @@ class PostsController extends Controller
 
         if (isset($_POST["search"])) {
             $search = $_POST["search"];
-            $posts = Post::Where("(id LIKE ? OR title LIKE ? OR discription LIKE ?) AND  is_confirmed = ?" , ['%'.$search.'%' , '%'.$search.'%', '%'.$search.'%'  , 0] );
+            $posts = Post::Where("(id LIKE ? OR title LIKE ? OR discription LIKE ?) AND  is_confirmed = ?", ['%' . $search . '%', '%' . $search . '%', '%' . $search . '%', 0]);
         } else {
             $posts = Post::Where("is_confirmed = ?", [0]);
         }
@@ -291,7 +291,8 @@ class PostsController extends Controller
         }
         exit();
     }
-    public function unconfirm() {
+    public function unconfirm()
+    {
         if (!Session::get("admin")) {
             echo "page not found";
             exit();
@@ -300,10 +301,7 @@ class PostsController extends Controller
         if (isset($_POST["unconfirm"])) {
             Post::chng_statut([0, $id]);
             Session::setFlash("Post  Unconfirmd");
-            header("location: " . URL );
+            header("location: " . URL);
         }
-
     }
-
-    
 }
