@@ -225,7 +225,7 @@ class PostsController extends Controller
                     $allowed_ext = array("mp4");
                     $exp = explode(".", $_FILES['video']['name']);
                     $ext = end($exp);
-                    $file_name = $post->title . "_owner_id_" . $post->owner_id . "." . $ext;`
+                    $file_name = $post->title . "_owner_id_" . $post->owner_id . "." . $ext;
                     $path = ROOT . S . "webroot" . S . "upload" . S . "media" . S . "posts_video" . S . $file_name;
                     if (in_array($ext, $allowed_ext)) {
                         if (move_uploaded_file($file_temp, $path)) {
