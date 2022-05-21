@@ -48,7 +48,6 @@
             <div class="right_part_nav">
 
                 <?php if (Session::get("user_id") != null) {
-                    $page = "home";
                     $user_id = Session::get("user_id");
                     $user = User::find($user_id);
                     Session::set("admin", $user->is_admin);
@@ -60,16 +59,10 @@
                             <li><a href=""> <span class="resaponsive logo">Master<span class="sec_logo">cook</span></span></li></a>
                         </ul>
                         <ul class="right-list">
-                            <?php if ($page === "home") { ?>
-                                <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="#"><i class="fas fa-home"></i>Home</a></li>
-                            <?php } elseif ($page === "show_both") { ?>
-                                <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="#"><i class="fas fa-home"></i>Home</a></li>
-                                <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="#"><i class="fas fa-plus"></i>New cook</a></li>
-                            <?php } else { ?>
-                                <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="#"><i class="fas fa-plus"></i>New cook</a></li>
-                            <?php } ?>
+                            
+                                <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>
+                                <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
                             <li><a class="link_btn-nav" href="#"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
-                            <li><a class="link_btn-nav" href="<?= URL ?>/users/logout"><i class="fas  fa-sign-out-alt"></i> <span class="my_list">logout</span></a></li>
                             <li><a href = "<?= URL ?>/users/profile" class="profile_img_link" style = "background-image: url('<?= URL  ?><?php echo $user->profile_img ?>');" ></a></li>
                             <li class="nav_btn  <?php if(Session::get('admin')) {echo 'show';} ?> "><a id="show_ver_nav" href="#" ><i class="fas fa-bars"></i></a></li>
                         </ul>
