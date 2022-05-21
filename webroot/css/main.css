@@ -569,7 +569,7 @@ hr {
     grid-template-columns: auto;
     gap: 15px;
   }
-  .body_container .categories .cate_btn {
+  .body_container .categories .category_btn {
     width: 290px;
     font-size: 25px;
     height: 100px;
@@ -644,7 +644,7 @@ input[type="search"]::-webkit-search-results-decoration {
   align-items: center;
   padding: 15px 15px;
   grid-template-columns: auto auto auto;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .categories label {
@@ -653,7 +653,7 @@ input[type="search"]::-webkit-search-results-decoration {
   border: 1px solid #83859cbd;
 }
 
-.categories .cate_btn {
+.categories .category_btn {
   text-decoration: none;
   display: flex;
   flex-direction: column;
