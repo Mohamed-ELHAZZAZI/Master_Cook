@@ -75,7 +75,8 @@ class Helper
      * 
      */
 
-     public static function title_check($title) {
+    public static function title_check($title)
+    {
         $result = true;
         if (preg_match("/[a-zA-Z0-9]/", $title)) {
             if (preg_match("/^.{1,30}$/", $title)) {
@@ -87,12 +88,13 @@ class Helper
             $result = false;
         }
         return $result;
-     }
+    }
 
-     public static function time_check($time) {
+    public static function time_check($estimated_time)
+    {
         $result = true;
-        if (preg_match("/^[0-9]/", $time)) {
-            if (preg_match("/^.{1,3}$/", $time)) {
+        if (preg_match("/^[0-9]/", $estimated_time)) {
+            if (preg_match("/^.{1,3}$/", $estimated_time)) {
                 $result = true;
             } else {
                 $result = false;
@@ -101,12 +103,13 @@ class Helper
             $result = false;
         }
         return $result;
-     }
+    }
 
-     public static function desc_check($desc){
+    public static function desc_check($discription)
+    {
         $result = true;
-        if (preg_match("/^[a-zA-Z0-9]/", $desc)) {
-            if (preg_match("/^.{20,2500}$/", $desc)) {
+        if (preg_match("/^[a-zA-Z0-9]/", $discription)) {
+            if (preg_match("/^.{20,2500}$/", $discription)) {
                 $result = true;
             } else {
                 $result = false;
@@ -115,5 +118,5 @@ class Helper
             $result = false;
         }
         return $result;
-     }
+    }
 }

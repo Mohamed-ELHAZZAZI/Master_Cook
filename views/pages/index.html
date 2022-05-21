@@ -1,9 +1,8 @@
 <section class="body_container">
- 
   <div class="categories">
     <input
       type="radio"
-      name="categories"
+      name="catigories"
       id="vegetable"
       class="cat_radio"
       value="vegetable"
@@ -16,7 +15,7 @@
     </label>
     <input
       type="radio"
-      name="categories"
+      name="catigories"
       id="meat"
       class="cat_radio"
       value="meat"
@@ -29,7 +28,7 @@
     </label>
     <input
       type="radio"
-      name="categories"
+      name="catigories"
       id="fruit"
       class="cat_radio"
       value="fruit"
@@ -42,7 +41,7 @@
     </label>
     <input
       type="radio"
-      name="categories"
+      name="catigories"
       id="seafood"
       class="cat_radio"
       value="seafood"
@@ -55,7 +54,7 @@
     </label>
     <input
       type="radio"
-      name="categories"
+      name="catigories"
       id="dairy"
       value="dairy"
       class="cat_radio"
@@ -68,7 +67,7 @@
     </label>
     <input
       type="radio"
-      name="categories"
+      name="catigories"
       id="pastry"
       value="pastry"
       class="cat_radio"
@@ -163,21 +162,25 @@
             <div class="tag_sec">
               <?php
 
-                if ($post->catigories === "meat") { 
-                    echo "<img src='../img/icons/16/meat_16.png'alt=''/>"; 
-                } else if ($post->catigories === "vegetable") { 
-                  echo "<img src='../img/icons/16/vegetable_16.png'alt=''/>"; 
-                } else if ($post->catigories === "pastry") { 
-                  echo "<img src='../img/icons/16/pastry_16.png'alt=''/>"; 
-                } else if ($post->catigories === "seafood") { 
-                  echo "<img src='../img/icons/16/seafood_16.png' alt=''/>"; 
-                }  else if ($post->catigories === "dairy") { 
-                    echo "<img src='../img/icons/16/dairy_16.png' alt=''/>"; 
-                  }else if ($post->catigories === "fruit") { 
-                    echo "<img src='../img/icons/16/fruit_16.png' alt=''/>"; 
-                  }
-                
-                ?>
+                if ($post->catigories === "meat") { echo "<img
+                src='../img/icons/16/meat_16.png'
+                alt=''
+              />"; } else if ($post->catigories === "vegetable") { echo "<img
+                src='../img/icons/16/vegetable_16.png'
+                alt=''
+              />"; } else if ($post->catigories === "pastry") { echo "<img
+                src='../img/icons/16/pastry_16.png'
+                alt=''
+              />"; } else if ($post->catigories === "seafood") { echo "<img
+                src='../img/icons/16/seafood_16.png'
+                alt=''
+              />"; } else if ($post->catigories === "dairy") { echo "<img
+                src='../img/icons/16/dairy_16.png'
+                alt=''
+              />"; }else if ($post->catigories === "fruit") { echo "<img
+                src='../img/icons/16/fruit_16.png'
+                alt=''
+              />"; } ?>
               <span><?= $post->catigories ?></span>
             </div>
           </div>
@@ -230,19 +233,19 @@
                         <div class="tag">
                             <div class="tag_sec">`;
 
-                                if (`${posts[index].catigories}` === "meat") {
-                                    filtered_posts +=  `<img src='../img/icons/16/meat_16.png' alt=''>`;
-                                } else if (`${posts[index].catigories}` === "vegetable") {
-                                    filtered_posts +=   `<img src='../img/icons/16/vegetable_16.png' alt=''>`;
-                                } else if (`${posts[index].catigories}`=== "dairy") {
-                                    filtered_posts +=   `<img src='../img/icons/16/dairy_16.png' alt=''>`;
-                                } else if (`${posts[index].catigories}` === "fruit") {
-                                    filtered_posts +=   `<img src='../img/icons/16/fruit_16.png' alt=''>`;
-                                } else if (`${posts[index].catigories}` === "pastry") {
-                                    filtered_posts +=   `<img src='../img/icons/16/pastry_16.png' alt=''>`;
-                                } else if (`${posts[index].catigories}` === "seafood") {
-                                    filtered_posts +=   `<img src='../img/icons/16/seafood_16.png' alt=''>`;
-                                }
+            if (`${posts[index].catigories}` === "meat") {
+              filtered_posts += `<img src='../img/icons/16/meat_16.png' alt=''>`;
+            } else if (`${posts[index].catigories}` === "vegetable") {
+              filtered_posts += `<img src='../img/icons/16/vegetable_16.png' alt=''>`;
+            } else if (`${posts[index].catigories}` === "dairy") {
+              filtered_posts += `<img src='../img/icons/16/dairy_16.png' alt=''>`;
+            } else if (`${posts[index].catigories}` === "fruit") {
+              filtered_posts += `<img src='../img/icons/16/fruit_16.png' alt=''>`;
+            } else if (`${posts[index].catigories}` === "pastry") {
+              filtered_posts += `<img src='../img/icons/16/pastry_16.png' alt=''>`;
+            } else if (`${posts[index].catigories}` === "seafood") {
+              filtered_posts += `<img src='../img/icons/16/seafood_16.png' alt=''>`;
+            }
 
             filtered_posts += `
                                 <span>${posts[index].catigories}</span>
@@ -254,7 +257,7 @@
           }
           $(".publicity_container").html(filtered_posts);
         },
-        
+
         dataType: "json",
       });
     });

@@ -62,53 +62,53 @@ if(isset($data["post"])) {
 
             <label class="label_info time" for="p_time">
                 <span>Estimated cooking time:</span>
-                <input type="number" name="time" class="time" value="<?= $post->estimated_time?>" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="time" pattern="\d*" id="p_time" maxlength="3">
+                <input type="number" name="estimated_time" class="time" value="<?= $post->estimated_time?>" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="estimated_time" pattern="\d*" id="p_time" maxlength="3">
                 <span>min.</span>
             </label>
-            <label for="desc" class="label_info">
+            <label for="discription" class="label_info">
                 <span>Discription:</span>
-                <textarea name="disc" id="desc" class="desc_area" cols="30" rows="10"><?php if(isset($post)) {echo $post->discription;} ?></textarea>
+                <textarea name="discription" id="discription" class="desc_area" cols="30" rows="10"><?php if(isset($post)) {echo $post->discription;} ?></textarea>
             </label>
             <!------------------------------------------------------------------------------------>
             <div class="categories_choice">
                 <span>Chouse Your categorie:</span>
                 <div class="categories">
-                    <input type="radio" name="categories" id="vegetable" class="cat_radio" value="vegetable">
+                    <input type="radio" name="catigories" id="vegetable" class="cat_radio" value="vegetable">
                     <label for="vegetable">
                         <a class="cate_btn" href="#" id="vegetable_a">
                             <img src="<?= URL ?>/img/icons/32/vegetable.png" alt="">
                             <span>Vegetables</span>
                         </a>
                     </label>
-                    <input type="radio" name="categories" id="meat" class="cat_radio" value="meat">
+                    <input type="radio" name="catigories" id="meat" class="cat_radio" value="meat">
                     <label for="meat">
                         <a class="cate_btn" id="meat_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/meat.png" alt="">
                             <span>Meat</span>
                         </a>
                     </label>
-                    <input type="radio" name="categories" id="fruit" class="cat_radio" value="fruit">
+                    <input type="radio" name="catigories" id="fruit" class="cat_radio" value="fruit">
                     <label for="fruit">
                         <a class="cate_btn" id="fruit_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/fruit.png" alt="">
                             <span>Fruit</span>
                         </a>
                     </label>
-                    <input type="radio" name="categories" id="seafood" class="cat_radio" value="seafood">
+                    <input type="radio" name="catigories" id="seafood" class="cat_radio" value="seafood">
                     <label for="seafood">
                         <a class="cate_btn" id="seafood_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/seafood.png" alt="">
                             <span>Seafood</span>
                         </a>
                     </label>
-                    <input type="radio" name="categories" id="dairy" value="dairy" class="cat_radio">
+                    <input type="radio" name="catigories" id="dairy" value="dairy" class="cat_radio">
                     <label for="dairy" id="dairy_a">
                         <a class="cate_btn" href="#">
                             <img src="<?= URL ?>/img/icons/32/dairy.png" alt="">
                             <span>Dairy</span>
                         </a>
                     </label>
-                    <input type="radio" name="categories" id="pastry" value="pastry" class="cat_radio">
+                    <input type="radio" name="catigories" id="pastry" value="pastry" class="cat_radio">
                     <label for="pastry">
                         <a class="cate_btn" id="pastry_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/pastry.png" alt="">

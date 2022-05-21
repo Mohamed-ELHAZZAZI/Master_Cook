@@ -31,14 +31,14 @@ class PostsController extends Controller
 
         if (isset($_POST["create_post"])) {
             $title = $_POST["title"];
-            $time = $_POST["time"];
-            $categories = $_POST["categories"];
-            $desc = $_POST["desc"];
+            $estimated_time = $_POST["estimated_time"];
+            $catigories = $_POST["catigories"];
+            $discription = $_POST["discription"];
 
             $owner_id = Session::get("user_id");
 
 
-            if (Helper::isEmpty([$title, $time, $categories, $desc])) {
+            if (Helper::isEmpty([$title, $estimated_time, $catigories, $discription])) {
                 Session::setError("Please fill all the blankc");
                 header("location: " . URL . "/posts/create");
                 exit();
@@ -50,13 +50,13 @@ class PostsController extends Controller
             //     exit();
             // }
 
-            // if (!Helper::time_check($time)) {
-            //     Session::setError("Invalid estimated time format");
+            // if (!Helper::time_check($estimated_time)) {
+            //     Session::setError("Invalid estimated estimated_time format");
             //     header("location: " . URL . "/posts/create");
             //     exit();
             // }
 
-            // if (!Helper::desc_check($desc)) {
+            // if (!Helper::desc_check($discription)) {
             //     Session::setError("Invalid discription format");
             //     header("location: " . URL . "/posts/create");
             //     exit();
@@ -92,7 +92,7 @@ class PostsController extends Controller
                     if (in_array($ext, $allowed_ext)) {
                         if (move_uploaded_file($file_temp, $path)) {
                             $video = "/upload/media/posts_video/" . $file_name;
-                            Post::setPost($owner_id, $title, $desc, $time, $categories, $image, $video);
+                            Post::setPost($owner_id, $title, $discription, $estimated_time, $catigories, $image, $video);
                             Session::setFlash("Post created, Please wait for the confirmation");
                             header("location: " . URL);
                         }
@@ -160,7 +160,7 @@ class PostsController extends Controller
             $post->owner_id = Session::get("user_id");
 
 
-            if (!Helper::isEmpty([$_POST["title"], $_POST["time"], $_POST["disc"]])) {
+            if (!Helper::isEmpty([$_POST["title"], $_POST["estimated_time"], $_POST["discription"]])) {
 
                 // if (!Helper::title_check($_POST["title"])) {
                 //     Session::setError("Invalid title format");
@@ -168,21 +168,21 @@ class PostsController extends Controller
                 //     exit();
                 // }
 
-                // if (!Helper::time_check($_POST["time"])) {
-                //     Session::setError("Invalid estimated time format");
+                // if (!Helper::time_check($_POST["estimated_time"])) {
+                //     Session::setError("Invalid estimated estimated_time format");
                 //     header("location: " . URL . "/posts/modify/" . $id);
                 //     exit();
                 // }
 
-                // if (!Helper::desc_check($_POST["disc"])) {
+                // if (!Helper::desc_check($_POST["discription"])) {
                 //     Session::setError("Invalid discription format");
                 //     header("location: " . URL . "/posts/modify/" . $id);
                 //     exit();
                 // }
 
                 $post->title =  $_POST["title"];
-                $post->estimated_time =  $_POST["time"];
-                $post->discription =  $_POST["disc"];
+                $post->estimated_time =  $_POST["estimated_time"];
+                $post->discription =  $_POST["discription"];
                 $post->is_confirmed = 0;
             } else {
                 Session::setError("Please fill all the blankc");
@@ -190,8 +190,8 @@ class PostsController extends Controller
                 exit();
             }
 
-            if (!Helper::isEmpty([$_POST["categories"]])) {
-                $post->catigories =  $_POST["categories"];
+            if (!Helper::isEmpty([$_POST["catigories"]])) {
+                $post->catigories =  $_POST["catigories"];
             } else {
                 Session::setError("Please Choose a categorie");
                 header("location: " . URL . "/posts/modify/" . $id);
@@ -240,7 +240,7 @@ class PostsController extends Controller
 
             $post->update();
             Session::setFlash("Post updated, please wait for the confirmation");
-            header("location: " . URL );
+            header("location: " . URL);
         }
         exit();
     }

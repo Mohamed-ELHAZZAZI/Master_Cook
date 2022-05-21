@@ -2,7 +2,7 @@
 
 class Post extends Model
 {
-    public $owner_id, $title, $desc, $time, $categories, $image, $video , $is_confirmed;
+    public $owner_id, $title, $discription, $estimated_time, $catigories, $image, $video, $is_confirmed;
 
 
     /**
@@ -47,16 +47,16 @@ class Post extends Model
     }
 
 
-    public static function setPost($owner_id, $title, $desc, $time, $categories, $image, $video)
+    public static function setPost($owner_id, $title, $discription, $estimated_time, $catigories, $image, $video)
     {
         $sql = "INSERT INTO postes(owner_id, title,discription,estimated_time,catigories,image,video) value (?,?,?,?,?,?,?)";
-        return App::$db->query($sql, [$owner_id, $title, $desc, $time, $categories, $image, $video]);
+        return App::$db->query($sql, [$owner_id, $title, $discription, $estimated_time, $catigories, $image, $video]);
     }
 
     public function update()
     {
         $sql = "UPDATE   postes SET owner_id = ? , title = ? ,discription = ? ,estimated_time = ? ,catigories = ? ,image = ? ,video = ? , is_confirmed = ? WHERE id = ?";
-        return App::$db->query($sql, [$this->owner_id, $this->title, $this->desc, $this->time, $this->categories, $this->image, $this->video,$this->is_confirmed, $this->id ]);
+        return App::$db->query($sql, [$this->owner_id, $this->title, $this->discription, $this->estimated_time, $this->catigories, $this->image, $this->video, $this->is_confirmed, $this->id]);
     }
 
     public static function delete($id)
