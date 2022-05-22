@@ -1,0 +1,152 @@
+<section class="body_container">
+    <div class="main-container">
+      <!-- <hr class="publicity_line" /> -->
+      <?php
+      if(Session::hasFlash()) {?>
+  
+      <div
+        id="message"
+        class="alert alert-success alert-dismissible fade show size"
+        role="alert"
+      >
+        <?php Session::flash()?>
+        <button
+          id="remove_btn"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
+      </div>
+      <?php } elseif(Session::hasError()) {?>
+  
+      <div
+        id="message"
+        class="alert alert-danger alert-dismissible fade show size"
+        role="alert"
+      >
+        <?php Session::error()?>
+        <button
+          id="remove_btn"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
+      </div>
+      <?php }elseif(Session::hasWarning()) {?>
+  
+      <div
+        id="message"
+        class="alert alert-warning alert-dismissible fade show size"
+        role="alert"
+      >
+        <?php Session::warning()?>
+        <button
+          id="remove_btn"
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
+      </div>
+      <?php } ?>
+      <div class="publicity_container">
+        <?php foreach ($data["postes"] as $post) { ?>
+        <div class="cnt">
+          <a href="<?=URL?>/posts/show/<?= $post->id ?>" class="img_container">
+            <div
+              style="background-image: url('<?= URL . $post->image ?>')"
+              class="img"
+            ></div>
+          </a>
+          <div class="cook">
+            <div class="cook_info">
+              <div class="about_cook">
+                <a href="<?=URL?>/posts/show/<?= $post->id ?>" class="title_link"
+                  ><span class="cook_title"><?= $post->title ?></span></a
+                >
+                <span class="cook_duration"
+                  ><i class="fas fa-clock duration_icon"></i
+                  ><?= $post->estimated_time ?> min</span
+                >
+              </div>
+  
+              <?php if (Session::get("user_id") != null) {?>
+              
+              <div data-like="1" class="like_btn" data-id="<?= $post->id ?>">
+                <i class="fas fa-heart  liked"></i>
+              </div>
+              <?php } ?>
+            </div>
+            <div class="tag">
+              <div class="tag_sec">
+                <?php
+  
+                  if ($post->catigories === "meat") { echo '<img
+                  src="../img/icons/16/meat_16.png"
+                  alt=""
+                />'; } else if ($post->catigories === "vegetable") { echo '<img
+                  src="../img/icons/16/vegetable_16.png"
+                  alt=""
+                />'; } else if ($post->catigories === "pastry") { echo '<img
+                  src="../img/icons/16/pastry_16.png"
+                  alt=""
+                />'; } else if ($post->catigories === "seafood") { echo '<img
+                  src="../img/icons/16/seafood_16.png"
+                  alt=""
+                />'; } else if ($post->catigories === "dairy") { echo '<img
+                  src="../img/icons/16/dairy_16.png"
+                  alt=""
+                />'; }else if ($post->catigories === "fruit") { echo '<img
+                  src="../img/icons/16/fruit_16.png"
+                  alt=""
+                />'; } ?>
+                <span><?= $post->catigories ?></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
+        <?php
+          if(empty($data["postes"])) {?>
+              <span class="not_founded_data">No postes fonded</span>
+        <?php } ?>
+      </div>
+    </div>
+  </section>
+
+ <script>
+  function init() {
+    $(".like_btn").on("click", function like() {
+      const liked = `<i class="fas fa-heart  fa-heart"></i>`;
+      const not_liked = `<i class="fas fa-heart heart_icon"></i>`;
+
+      var post_id = $(this).data("id");
+      var like = $(this).data("like");
+      console.log("A", $(this).data("like"));
+      $.ajax({
+        url: "<?= URL ?>/ajax/lists/like/" + post_id,
+        type: "POST",
+        data: {
+          like: like,
+        },
+        success: function (data) {
+          let btn = $(".like_btn[data-id=" + data.post_id + "]");
+
+          if (data.like) {
+            btn.html(liked);
+            console.log("liked");
+          } else {
+            btn.html(not_liked);
+            console.log("not_liked");
+          }
+
+          btn.data("like", data.like ? 1 : 0);
+          console.log("B", btn.data("like"));
+        },
+        dataType: "JSON",
+      });
+    });
+  }
+
+init();
+</script>
+  

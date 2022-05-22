@@ -34,7 +34,7 @@ class Post extends Model
 
     public static function Where($where = "", $params = [])
     {
-        $sql = "SELECT *,( SELECT COUNT(*) FROM `my_lists` m WHERE m.`user_id` = ? AND m.`post_id` = p.id ) AS 'isliked'  FROM postes p";
+        $sql = "SELECT *,( SELECT COUNT(*) FROM `my_lists` m WHERE m.`user_id` = ? AND m.`post_id` = p.id ) AS 'isliked' FROM postes p ";
         if ($where != "") {
             $sql .= " WHERE " . $where;
         }
@@ -81,4 +81,6 @@ class Post extends Model
         else
             return null;
     }
+
+    
 }

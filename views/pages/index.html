@@ -165,31 +165,35 @@
           <div class="tag">
             <div class="tag_sec">
               <?php
-
-                if ($post->catigories === "meat") { echo `<img
+  
+                  if ($post->catigories === "meat") { echo '<img
                 src="../img/icons/16/meat_16.png"
                 alt=""
-              />`; } else if ($post->catigories === "vegetable") { echo `<img
+              />'; } else if ($post->catigories === "vegetable") { echo '<img
                 src="../img/icons/16/vegetable_16.png"
                 alt=""
-              />`; } else if ($post->catigories === "pastry") { echo `<img
+              />'; } else if ($post->catigories === "pastry") { echo '<img
                 src="../img/icons/16/pastry_16.png"
                 alt=""
-              />`; } else if ($post->catigories === "seafood") { echo `<img
+              />'; } else if ($post->catigories === "seafood") { echo '<img
                 src="../img/icons/16/seafood_16.png"
                 alt=""
-              />`; } else if ($post->catigories === "dairy") { echo `<img
+              />'; } else if ($post->catigories === "dairy") { echo '<img
                 src="../img/icons/16/dairy_16.png"
                 alt=""
-              />`; }else if ($post->catigories === "fruit") { echo `<img
+              />'; }else if ($post->catigories === "fruit") { echo '<img
                 src="../img/icons/16/fruit_16.png"
                 alt=""
-              />`; } ?>
+              />'; } ?>
               <span><?= $post->catigories ?></span>
             </div>
           </div>
         </div>
       </div>
+      <?php } ?>
+      <?php
+        if(!isset($data["postes"])) {?>
+        <span class="not_founded_data">No postes fonded</span>
       <?php } ?>
     </div>
   </div>

@@ -29,7 +29,7 @@
 
                     
 <nav class="navbar navbar-light bg-light">
-    <form class="form-inline" method="POST" action="<?= URL ?>">
+    <form class="form-inline" method="POST" action="<?= URL ?><?php if(App::getRouter()->getController() == 'mylists' && App::getRouter()->getAction() == 'index'){echo '/mylists';} ?>">
       <input
         class="search-input  form-control mr-sm-2"
         type="search"
@@ -61,14 +61,17 @@
                         <ul class="right-list">
                             <?php if(App::getRouter()->getController() == "pages" && App::getRouter()->getAction() == "index") {?>
                                 <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
-                                <li><a class="link_btn-nav" href="#"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
+                                <li><a class="link_btn-nav" href="<?= URL ?>/mylists"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
                                 <?php } elseif(App::getRouter()->getController() == "posts" && App::getRouter()->getAction() == "create") {?>
                                 <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>
-                                <li><a class="link_btn-nav" href="#"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
+                                <li><a class="link_btn-nav" href="<?= URL ?>/mylists"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
                             <?php } elseif(App::getRouter()->getController() == "users" && App::getRouter()->getAction() == "profile") {?>
                                 <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>
                                 <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
-                                <li><a class="link_btn-nav" href="#"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
+                                <li><a class="link_btn-nav" href="<?= URL ?>/mylists"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
+                            <?php } elseif(App::getRouter()->getController() == "mylists" && App::getRouter()->getAction() == "index") {?>
+                                <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>
+                                <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
                             <?php } ?>
                             <li><a href = "<?= URL ?>/users/profile" class="profile_img_link" style = "background-image: url('<?= URL  ?><?php echo $user->profile_img ?>');" ></a></li>
                             <li class="nav_btn  <?php if(Session::get('admin')) {echo 'show';} ?> "><a id="show_ver_nav" href="#" ><i class="fas fa-bars"></i></a></li>
@@ -86,7 +89,7 @@
                                 <div class="top-ver_nav-container">
                                     <ul class="ver-nav-content">
                                         <li><a href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
-                                        <li><a href="#"><i class="fas fa-heart"></i>My lists</a></li>
+                                        <li><a href="<?= URL ?>/mylists"><i class="fas fa-heart"></i>My lists</a></li>
                                         <li><a href="#"><i class="fas fa-user-alt"></i>profile settings</a></li>
                                         <?php if($admin) {?>
                                             <li><a href="<?= URL ?>/admin/users"><i class="fas fa-users"></i>users list</a></li>

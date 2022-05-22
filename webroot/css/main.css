@@ -696,3 +696,8 @@ body::-webkit-scrollbar-thumb {
   background: #4e60ff9c;
   border-radius: 50px;
 }
+
+
+.not_founded_data {
+  font-size: 30px;
+}
