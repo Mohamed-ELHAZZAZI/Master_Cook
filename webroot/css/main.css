@@ -438,11 +438,18 @@ hr {
   height: 21px;
 }
 
-.main-container .publicity_container .cook .cook_info .heart_icon , .fa-heart {
+.main-container .publicity_container .cook .cook_info .heart_icon,
+.fa-heart {
   font-size: 21px;
   font-weight: 200;
 }
-.main-container .publicity_container .cook .cook_info .heart_icon:hover , .fa-heart:hover {
+
+.like_btn[data-like="1"] {
+  color: #4e60ff;
+}
+
+.main-container .publicity_container .cook .cook_info .heart_icon:hover,
+.fa-heart:hover {
   transform: scale(1.2);
 }
 
@@ -676,7 +683,6 @@ input[type="radio"]:checked + label {
   border: 2px solid #4e06ff;
 }
 
-
 body::-webkit-scrollbar {
   width: 5px;
 }
@@ -688,5 +694,5 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background: #4e60ff9c;
-  border-radius:50px;
+  border-radius: 50px;
 }

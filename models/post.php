@@ -12,8 +12,8 @@ class Post extends Model
 
     public static function getAllPosts()
     {
-        $sql = "SELECT * FROM postes WHERE is_confirmed = ? ORDER BY id DESC";
-        return App::$db->query($sql, [1])->fetchAll(PDO::FETCH_CLASS, Post::class);
+        $sql = "SELECT *,( SELECT COUNT(*) FROM `my_lists` m WHERE m.`user_id` = ? AND m.`post_id` = p.id ) AS 'isliked' FROM postes p WHERE is_confirmed = ? ORDER BY id DESC";
+        return App::$db->query($sql, [Session::get("user_id"), 1])->fetchAll(PDO::FETCH_CLASS, Post::class);
     }
 
     /**
@@ -34,10 +34,11 @@ class Post extends Model
 
     public static function Where($where = "", $params = [])
     {
-        $sql = "SELECT * FROM postes";
+        $sql = "SELECT *,( SELECT COUNT(*) FROM `my_lists` m WHERE m.`user_id` = ? AND m.`post_id` = p.id ) AS 'isliked'  FROM postes p";
         if ($where != "") {
             $sql .= " WHERE " . $where;
         }
+        array_unshift($params, Session::get("user_id"));
         $exists =  App::$db->query($sql, $params)->fetchAll(PDO::FETCH_CLASS, Post::class);
         if (isset($exists)) {
             return $exists;

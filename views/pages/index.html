@@ -151,21 +151,25 @@
             </div>
 
             <?php if (Session::get("user_id") != null) {?>
-            <div data-type="not_liked" class="like_btn" id="like">
+            <?php if ($post->isliked) {?>
+            <div data-like="1" class="like_btn" data-id="<?= $post->id ?>">
+              <i class="fas fa-heart fa-heart"></i>
+            </div>
+            <?php } else {?>
+            <div data-like="0" class="like_btn" data-id="<?= $post->id ?>">
               <i class="fas fa-heart heart_icon"></i>
             </div>
-            <?php
-                            }
-                            ?>
+            <?php } ?>
+            <?php } ?>
           </div>
           <div class="tag">
             <div class="tag_sec">
               <?php
 
                 if ($post->catigories === "meat") { echo `<img
-                  src="../img/icons/16/meat_16.png"
-                  alt=""
-                />`; } else if ($post->catigories === "vegetable") { echo `<img
+                src="../img/icons/16/meat_16.png"
+                alt=""
+              />`; } else if ($post->catigories === "vegetable") { echo `<img
                 src="../img/icons/16/vegetable_16.png"
                 alt=""
               />`; } else if ($post->catigories === "pastry") { echo `<img
@@ -196,13 +200,32 @@
     $(".like_btn").on("click", function like() {
       const liked = `<i class="fas fa-heart  fa-heart"></i>`;
       const not_liked = `<i class="fas fa-heart heart_icon"></i>`;
-      if (this.dataset.type == "not_liked") {
-        this.dataset.type = "liked";
-        this.innerHTML = liked;
-      } else if (this.dataset.type == "liked") {
-        this.dataset.type = "not_liked";
-        this.innerHTML = not_liked;
-      }
+
+      var post_id = $(this).data("id");
+      var like = $(this).data("like");
+      console.log("A", $(this).data("like"));
+      $.ajax({
+        url: "<?= URL ?>/ajax/lists/like/" + post_id,
+        type: "POST",
+        data: {
+          like: like,
+        },
+        success: function (data) {
+          let btn = $(".like_btn[data-id=" + data.post_id + "]");
+
+          if (data.like) {
+            btn.html(liked);
+            console.log("liked");
+          } else {
+            btn.html(not_liked);
+            console.log("not_liked");
+          }
+
+          btn.data("like", data.like ? 1 : 0);
+          console.log("B", btn.data("like"));
+        },
+        dataType: "JSON",
+      });
     });
   }
 
@@ -238,10 +261,10 @@
 
                             `;
             if (user_id != null) {
-              filtered_posts += ` <div  data-type = "not_liked" class="like_btn" id="like">
-              <i class="fas fa-heart heart_icon"></i>
-            </div>
-                          `;
+              if (posts[index].isliked > 0) {
+                filtered_posts += ` <div  data-like="1" class="like_btn" data-id="${posts[index].id}"> <i class="fas fa-heart"></i> </div> `;
+              } else
+                filtered_posts += ` <div  data-like="0" class="like_btn" data-id="${posts[index].id}"> <i class="fas fa-heart heart_icon"></i> </div> `;
             }
             filtered_posts += `
 
