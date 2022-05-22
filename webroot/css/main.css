@@ -435,13 +435,14 @@ hr {
   border: transparent;
   display: flex;
   cursor: pointer;
+  height: 21px;
 }
 
-.main-container .publicity_container .cook .cook_info .heart_icon {
+.main-container .publicity_container .cook .cook_info .heart_icon , .fa-heart {
   font-size: 21px;
   font-weight: 200;
 }
-.main-container .publicity_container .cook .cook_info .heart_icon:hover {
+.main-container .publicity_container .cook .cook_info .heart_icon:hover , .fa-heart:hover {
   transform: scale(1.2);
 }
 

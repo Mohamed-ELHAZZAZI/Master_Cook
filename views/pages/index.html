@@ -151,7 +151,7 @@
             </div>
 
             <?php if (Session::get("user_id") != null) {?>
-            <div class="like_btn" id="like">
+            <div data-type="not_liked" class="like_btn" id="like">
               <i class="fas fa-heart heart_icon"></i>
             </div>
             <?php
@@ -162,25 +162,25 @@
             <div class="tag_sec">
               <?php
 
-                if ($post->catigories === "meat") { echo "<img
-                src='../img/icons/16/meat_16.png'
-                alt=''
-              />"; } else if ($post->catigories === "vegetable") { echo "<img
-                src='../img/icons/16/vegetable_16.png'
-                alt=''
-              />"; } else if ($post->catigories === "pastry") { echo "<img
-                src='../img/icons/16/pastry_16.png'
-                alt=''
-              />"; } else if ($post->catigories === "seafood") { echo "<img
-                src='../img/icons/16/seafood_16.png'
-                alt=''
-              />"; } else if ($post->catigories === "dairy") { echo "<img
-                src='../img/icons/16/dairy_16.png'
-                alt=''
-              />"; }else if ($post->catigories === "fruit") { echo "<img
-                src='../img/icons/16/fruit_16.png'
-                alt=''
-              />"; } ?>
+                if ($post->catigories === "meat") { echo `<img
+                  src="../img/icons/16/meat_16.png"
+                  alt=""
+                />`; } else if ($post->catigories === "vegetable") { echo `<img
+                src="../img/icons/16/vegetable_16.png"
+                alt=""
+              />`; } else if ($post->catigories === "pastry") { echo `<img
+                src="../img/icons/16/pastry_16.png"
+                alt=""
+              />`; } else if ($post->catigories === "seafood") { echo `<img
+                src="../img/icons/16/seafood_16.png"
+                alt=""
+              />`; } else if ($post->catigories === "dairy") { echo `<img
+                src="../img/icons/16/dairy_16.png"
+                alt=""
+              />`; }else if ($post->catigories === "fruit") { echo `<img
+                src="../img/icons/16/fruit_16.png"
+                alt=""
+              />`; } ?>
               <span><?= $post->catigories ?></span>
             </div>
           </div>
@@ -192,6 +192,20 @@
 </section>
 
 <script>
+  function init() {
+    $(".like_btn").on("click", function like() {
+      const liked = `<i class="fas fa-heart  fa-heart"></i>`;
+      const not_liked = `<i class="fas fa-heart heart_icon"></i>`;
+      if (this.dataset.type == "not_liked") {
+        this.dataset.type = "liked";
+        this.innerHTML = liked;
+      } else if (this.dataset.type == "liked") {
+        this.dataset.type = "not_liked";
+        this.innerHTML = not_liked;
+      }
+    });
+  }
+
   $(document).ready(function () {
     $(".cat_radio").on("change", function () {
       var value = $(this).val();
@@ -224,7 +238,9 @@
 
                             `;
             if (user_id != null) {
-              filtered_posts += `  <button class="like_btn" id="like"><i class="fas fa-heart heart_icon"></i></button>
+              filtered_posts += ` <div  data-type = "not_liked" class="like_btn" id="like">
+              <i class="fas fa-heart heart_icon"></i>
+            </div>
                           `;
             }
             filtered_posts += `
@@ -256,10 +272,13 @@
                      `;
           }
           $(".publicity_container").html(filtered_posts);
+
+          init();
         },
 
         dataType: "json",
       });
     });
+    init();
   });
 </script>
