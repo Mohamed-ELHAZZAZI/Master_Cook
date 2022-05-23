@@ -14,6 +14,7 @@ class MylistsController extends Controller
         } else {
             $list = FaveList::get_my_lists($user_id);
         }
+
         $this->data["postes"] = $list;
     }
 }

@@ -7,10 +7,10 @@ class FaveList extends Model
      * 
      */
 
-    public static function get_my_lists()
+    public static function get_my_lists($user_id)
     {
-        $sql = "SELECT * FROM my_lists m INNER JOIN postes p on  m.post_id = p.id";
-        $post = App::$db->query($sql)->fetchAll(PDO::FETCH_CLASS, FaveList::class);
+        $sql = "SELECT * FROM my_lists m INNER JOIN postes p on  m.post_id = p.id WHERE m.user_id = ?";
+        $post = App::$db->query($sql, [$user_id])->fetchAll(PDO::FETCH_CLASS, FaveList::class);
         if (isset($post))
             return  $post;
         else
