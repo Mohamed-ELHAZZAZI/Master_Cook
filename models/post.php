@@ -38,6 +38,7 @@ class Post extends Model
         if ($where != "") {
             $sql .= " WHERE " . $where;
         }
+        $sql .= "ORDER BY id DESC";
         array_unshift($params, Session::get("user_id"));
         $exists =  App::$db->query($sql, $params)->fetchAll(PDO::FETCH_CLASS, Post::class);
         if (isset($exists)) {
