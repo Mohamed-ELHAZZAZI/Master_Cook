@@ -192,8 +192,8 @@
       </div>
       <?php } ?>
       <?php
-        if(!isset($data["postes"])) {?>
-        <span class="not_founded_data">No postes fonded</span>
+        if(empty($data["postes"])) {?>
+        <span class="not_founded_data">No postes founded</span>
       <?php } ?>
     </div>
   </div>
