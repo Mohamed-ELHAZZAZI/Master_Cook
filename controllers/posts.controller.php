@@ -304,4 +304,18 @@ class PostsController extends Controller
             header("location: " . URL);
         }
     }
+
+    public function ajax_index()
+    {
+        if (isset($_POST["limit"]) && isset($_POST["category"])) {
+            if ($_POST["category"] === "all") {
+                $posts = Post::Where("", [], [$_POST["limit"], $_POST["limit"] + 9]);
+            } else {
+                $posts = Post::Where("catigories = ? ", [$_POST["category"]], [$_POST["limit"], $_POST["limit"] + 9]);
+            }
+            echo json_encode($posts);
+        } else {
+            echo json_encode([]);
+        }
+    }
 }

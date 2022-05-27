@@ -10,10 +10,10 @@ class Post extends Model
      * 
      */
 
-    public static function getAllPosts()
+    public static function getAllPosts($limit = "0 , 9")
     {
-        $sql = "SELECT *,( SELECT COUNT(*) FROM `my_lists` m WHERE m.`user_id` = ? AND m.`post_id` = p.id ) AS 'isliked' FROM postes p WHERE is_confirmed = ? ORDER BY id DESC";
-        return App::$db->query($sql, [Session::get("user_id"), 1])->fetchAll(PDO::FETCH_CLASS, Post::class);
+        $sql = "SELECT *,( SELECT COUNT(*) FROM `my_lists` m WHERE m.`user_id` = ? AND m.`post_id` = p.id ) AS 'isliked' FROM postes p WHERE is_confirmed = ? ORDER BY id DESC LIMIT ".$limit;
+        return App::$db->query($sql, [Session::get("user_id"), 1 ])->fetchAll(PDO::FETCH_CLASS, Post::class);
     }
 
     /**
@@ -32,13 +32,16 @@ class Post extends Model
     }
 
 
-    public static function Where($where = "", $params = [])
+    public static function Where($where = "", $params = [] , $limit = [-1 , -1])
     {
         $sql = "SELECT *,( SELECT COUNT(*) FROM `my_lists` m WHERE m.`user_id` = ? AND m.`post_id` = p.id ) AS 'isliked' FROM postes p ";
         if ($where != "") {
             $sql .= " WHERE " . $where;
         }
         $sql .= "ORDER BY id DESC";
+        if ($limit[0] >= 0 && $limit[1] > 0 && $limit[0] < $limit[1] + 1 ) {
+            $sql .= " LIMIT " . $limit[0].",".$limit[1];
+        }
         array_unshift($params, Session::get("user_id"));
         $exists =  App::$db->query($sql, $params)->fetchAll(PDO::FETCH_CLASS, Post::class);
         if (isset($exists)) {
