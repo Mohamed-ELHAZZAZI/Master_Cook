@@ -15,6 +15,7 @@ if (show_ver_nav != null) {
 //--------------------------------------------------------create post---------------------------------------
 
 var stop_a_bnt = document.getElementsByClassName("cate_btn");
+var caty_bnt = document.getElementsByClassName("category_btn");
 
 var myFunction = function (event) {
   event.preventDefault();
@@ -26,6 +27,11 @@ if (stop_a_bnt != null) {
   });
 }
 
+if (caty_bnt != null) {
+  Array.from(caty_bnt).forEach(function (element) {
+    element.addEventListener("click", myFunction);
+  });
+}
 //------------------------------------------------------------------------------------------------------------
 //clicko on radio btn
 var dairy_a = document.getElementById("dairy_a");
@@ -204,5 +210,20 @@ function set_admin_user_confirm() {
     return true;
   } else {
     return false;
+  }
+}
+
+function show_confirm() {
+  if(confirm("Confirm this post?")) {
+      return true;
+  } else {
+      return false;
+  }
+}
+function show_unconfirm() {
+  if(confirm("Unconfirm this post?")) {
+      return true;
+  } else {
+      return false;
   }
 }

@@ -15,13 +15,14 @@
     <link rel="stylesheet" rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title><?=config::get('site_name')?></title>
+    <link rel = "icon" href = "<?= URL ?>/img/icons/restaurant.png" type = "image/x-icon">
   </head>
   <body>
     <header>
         <nav class="nav_header">
             <div class="left_part_nav">
                 <a href="<?= URL  ?>/">
-                    <span class="logo">Master<span class="sec_logo">cook</span></span>
+                    <span class="logo">Master <span><span class="sec_logo">c<img class="logo_nav_img" src="<?= URL ?>/img/icons/restaurant.png" alt="">ok</span></span></span>
                 </a>
                 <div class="search_div">
                     <!-- <input type="text" name="search_bar" class="search_input" id="search_bar" placeholder="Search">
@@ -29,7 +30,7 @@
 
                     
 <nav class="navbar navbar-light bg-light">
-    <form class="form-inline" method="POST" action="<?= URL ?><?php if(App::getRouter()->getController() == 'mylists' && App::getRouter()->getAction() == 'index'){echo '/mylists';} ?>">
+    <form class="form-inline" method="POST" action="<?= URL ?><?php if(App::getRouter()->getController() == 'mylists' && App::getRouter()->getAction() == 'index'){echo '/mylists';}elseif (App::getRouter()->getController() == 'cuisin' && App::getRouter()->getAction() == 'chef'){echo '/cuisin/chef';} ?>">
       <input
         class="search-input  form-control mr-sm-2"
         type="search"
@@ -56,7 +57,11 @@
                     
                     <div class="right_media_logo">
                         <ul class="logo responsive-list">
-                            <li><a href=""> <span class="resaponsive logo">Master<span class="sec_logo">cook</span></span></li></a>
+                            <li>
+                                <a href="<?= URL  ?>/">
+                                    <span class="logo">Master <span><span class="sec_logo">c<img class="logo_nav_img" src="<?= URL ?>/img/icons/restaurant.png" alt="">ok</span></span></span>
+                                </a>
+                            </a>
                         </ul>
                         <ul class="right-list">
                             <?php if(App::getRouter()->getController() == "pages" && App::getRouter()->getAction() == "index") {?>
@@ -65,7 +70,7 @@
                                 <?php } elseif(App::getRouter()->getController() == "posts" && App::getRouter()->getAction() == "create") {?>
                                 <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>
                                 <li><a class="link_btn-nav" href="<?= URL ?>/mylists"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
-                            <?php } elseif(App::getRouter()->getController() == "users" && App::getRouter()->getAction() == "profile") {?>
+                            <?php } elseif((App::getRouter()->getController() == "users" && App::getRouter()->getAction() == "profile") || (App::getRouter()->getController() == "cuisin" && App::getRouter()->getAction() == "chef") ) {?>
                                 <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>
                                 <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
                                 <li><a class="link_btn-nav" href="<?= URL ?>/mylists"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
@@ -118,8 +123,11 @@
                 <?php } else {  ?>
                     <div class="right_media_logo">
                         <ul class="logo responsive-list">
-                            <li><a href="#">
-                            <li> <span class="resaponsive logo">Master<span class="sec_logo">cook</span></span></li></a></li>
+                            <li>
+                                <a href="<?= URL  ?>/">
+                                    <span class="logo">Master <span><span class="sec_logo">c<img class="logo_nav_img" src="<?= URL ?>/img/icons/restaurant.png" alt="">ok</span></span></span>
+                                </a>
+                            </li>
                         </ul>
                         <div class="right_list">
                             <button onclick="location.href='<?= URL  ?>/login'" class="login_btn btn_nav">Login</button>

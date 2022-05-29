@@ -43,7 +43,7 @@ class PostsController extends Controller
                 header("location: " . URL . "/posts/create");
                 exit();
             }
-            $dispo_category = ["meat", "fruit", "Vegetables", "seafood", "pastry", "dairy"];
+            $dispo_category = ["meat", "fruit", "vegetable", "seafood", "pastry", "dairy"];
             if (!in_array($_POST["catigories"], $dispo_category)) {
                 Session::setError("Please Choose appropriate category");
                 header("location: " . URL . "/posts/create");
@@ -197,7 +197,7 @@ class PostsController extends Controller
             }
 
             if (!Helper::isEmpty([$_POST["catigories"]])) {
-                $dispo_category = ["meat", "fruit", "Vegetables", "seafood", "pastry", "dairy"];
+                $dispo_category = ["meat", "fruit", "vegetable", "seafood", "pastry", "dairy"];
                 if (in_array($_POST["catigories"], $dispo_category)) {
                     $post->catigories =  $_POST["catigories"];
                 } else {

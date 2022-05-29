@@ -45,7 +45,7 @@ body {
   align-items: center;
 }
 
-.cate_btn {
+.cate_btn , .chef_btn {
   text-decoration: none;
   display: flex;
   /* flex-direction: column; */

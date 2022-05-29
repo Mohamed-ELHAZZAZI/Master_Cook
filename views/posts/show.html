@@ -79,7 +79,7 @@ $chef  = $data["chef"];
             <span class="ttl">
                 By chef:
             </span>
-            <a href="" class="cate_btn">
+            <a href="<?= URL ?>/cuisin/chef/<?= $chef->id ?>" class="chef_btn">
                 <span class="profile_img" style="background-image : url('<?= URL . $chef->profile_img ?>')"></span>
                 <?= $chef->first_name . " " . $chef->last_name ?>
             </a>
@@ -94,18 +94,18 @@ $chef  = $data["chef"];
                     <button name="modify" class="btn btn-primary" >modify</button>
                 </form>
                 <form method="POST" action="<?= URL ?>/posts/delete/<?=$post_info->id?>" >
-                    <button name="delete" class="btn btn-danger" onclick="return show_confirm()" >Delete</button>
+                    <button name="delete" class="btn btn-danger" onclick="return delete_post_confirm()" >Delete</button>
                 </form>
             </div>
 
        <?php }elseif (Session::get("admin")){ ?>
         <div class="chng_post">
             <form method="POST" action="<?= URL ?>/posts/delete/<?=$post_info->id?>" >
-                <button name="delete" type="submit" onclick="return show_confirm()" class="btn btn-danger">Delete this post</button>
+                <button name="delete" type="submit" onclick="return delete_post_confirm()" class="btn btn-danger">Delete this post</button>
             </form>
              <?php if ($post_info->is_confirmed){ ?>
                 <form method="POST" action="<?= URL ?>/posts/unconfirm/<?=$post_info->id?>" >
-                    <button name="unconfirm" type="submit" onclick="return show_confirm()" class="btn btn-dark">unconfirm</button>
+                    <button name="unconfirm" type="submit" onclick="return show_unconfirm()" class="btn btn-dark">unconfirm</button>
                 </form>
             <?php }else {?>
                 <form method="POST" action="<?=URL?>/admin/posts/accepte/<?= $post_info->id ?>" >
@@ -117,14 +117,3 @@ $chef  = $data["chef"];
        <?php } ?> 
 
        
-
-    <script type="text/javascript">
-        function show_confirm() {
-           if(confirm("Delete the post?")) {
-               return true;
-           } else {
-               return false;
-           }
-        }    
-
-     </script>
