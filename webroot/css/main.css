@@ -511,6 +511,10 @@ hr {
   align-items: center;
   justify-content: center;
 }
+.main-container .publicity_container .cook .tag  .tag_sec:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
 .form-inline {
   display: flex;
   align-items: center;

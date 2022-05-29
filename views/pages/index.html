@@ -163,9 +163,8 @@
             <?php } ?>
           </div>
           <div class="tag">
-            <div class="tag_sec">
+            <div class="tag_sec" data-category="<?php if ($post->catigories === "meat") {  echo "meat"; } else if ($post->catigories === "vegetable") {  echo "vegetable"; } else if ($post->catigories === "pastry") {  echo "pastry"; } else if ($post->catigories === "seafood") {  echo "seafood"; } else if ($post->catigories === "dairy") {  echo "dairy"; }else if ($post->catigories === "fruit") { echo "fruit"; } ?>">
               <?php
-  
                   if ($post->catigories === "meat") { echo '<img
                 src="../img/icons/16/meat_16.png"
                 alt=""
@@ -241,20 +240,19 @@
 
                         </div>
                         <div class="tag">
-                            <div class="tag_sec">`;
-
+                            <div class="tag_sec" data-category = `;                    
           if (`${posts[index].catigories}` === "meat") {
-            filtered_posts += `<img src='../img/icons/16/meat_16.png' alt=''>`;
+            filtered_posts += `"meat"> <img src='../img/icons/16/meat_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "vegetable") {
-            filtered_posts += `<img src='../img/icons/16/vegetable_16.png' alt=''>`;
+            filtered_posts += `"vegetable"><img src='../img/icons/16/vegetable_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "dairy") {
-            filtered_posts += `<img src='../img/icons/16/dairy_16.png' alt=''>`;
+            filtered_posts += `"dairy"><img src='../img/icons/16/dairy_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "fruit") {
-            filtered_posts += `<img src='../img/icons/16/fruit_16.png' alt=''>`;
+            filtered_posts += `"fruit"><img src='../img/icons/16/fruit_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "pastry") {
-            filtered_posts += `<img src='../img/icons/16/pastry_16.png' alt=''>`;
+            filtered_posts += `"pastry"><img src='../img/icons/16/pastry_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "seafood") {
-            filtered_posts += `<img src='../img/icons/16/seafood_16.png' alt=''>`;
+            filtered_posts += `"seafood"><img src='../img/icons/16/seafood_16.png' alt=''>`;
           }
 
           filtered_posts += `
@@ -276,6 +274,9 @@
   var limit = 9;
   var category = "all";
   function init() {
+    $(".tag_sec").on("click", function () {
+    $("#"+$(this).data("category")).click();
+  })
     $(".like_btn").on("click", function like() {
       const liked = `<i class="fas fa-heart  fa-heart"></i>`;
       const not_liked = `<i class="fas fa-heart heart_icon"></i>`;
