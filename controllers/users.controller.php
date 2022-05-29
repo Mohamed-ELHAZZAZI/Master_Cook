@@ -173,10 +173,10 @@ class UsersController extends Controller
             $user = User::find($id);
             if ($user->is_admin) {
                 $user->is_admin = false;
-                $msg = "user id = " . $user->id . " degrade from admin";
+                $msg = "user degrade from admin";
             } else {
                 $user->is_admin = true;
-                $msg = "user id = " . $user->id . " upgraded to admin";
+                $msg = "user upgraded to admin";
             }
             $user->updateAdmin();
             

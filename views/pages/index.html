@@ -282,7 +282,6 @@
 
       var post_id = $(this).data("id");
       var like = $(this).data("like");
-      console.log("A", $(this).data("like"));
       $.ajax({
         url: "<?= URL ?>/ajax/lists/like/" + post_id,
         type: "POST",
@@ -294,14 +293,11 @@
 
           if (data.like) {
             btn.html(liked);
-            console.log("liked");
           } else {
             btn.html(not_liked);
-            console.log("not_liked");
           }
 
           btn.data("like", data.like ? 1 : 0);
-          console.log("B", btn.data("like"));
         },
         dataType: "JSON",
       });
@@ -310,84 +306,20 @@
 
   $(document).ready(function () {
     $(".cat_radio").on("change", function () {
-      // limit = 0;
+      limit = 9;
       category = $(this).val();
       $(".publicity_container").html("");
       getData(category, 0);
-      // $.ajax({
-      //   url: "<?= URL ?>/ajax/categories/filter",
-      //   type: "POST",
-      //   data: "category=" + value,
-      //   beforeSend: function () {
-      //     $(".publicity_container").html(
-      //       "<div class='spinner-border text-primary'></div>"
-      //     );
-      //   },
-      //   success: function (posts) {
-      //     var filtered_posts = "";
-      //     var URL = "<?=URL?>";
-      //     var user_id = "Session::get('user_id')";
-      //     for (let index = 0; index < posts.length; index++) {
-      //       filtered_posts += `
-      //                <div class="cnt">
-      //               <a href="${URL}/posts/show/${posts[index].id}" class="img_container">
-      //                   <div style="background-image: url('${posts[index].image}')" class="img"></div>
-      //               </a>
-      //               <div class="cook">
-      //                   <div class="cook_info">
-      //                       <div class="about_cook">
-      //                           <a href="${URL}/posts/show/${posts[index].id}" class="title_link"><span class="cook_title">${posts[index].title}</span></a>
-      //                           <span class="cook_duration"><i class="fas fa-clock duration_icon"></i>${posts[index].estimated_time} min</span>
-      //                       </div>
-      //                       `;
-      //       if (user_id != null) {
-      //         if (posts[index].isliked > 0) {
-      //           filtered_posts += ` <div  data-like="1" class="like_btn" data-id="${posts[index].id}"> <i class="fas fa-heart"></i> </div> `;
-      //         } else
-      //           filtered_posts += ` <div  data-like="0" class="like_btn" data-id="${posts[index].id}"> <i class="fas fa-heart heart_icon"></i> </div> `;
-      //       }
-      //       filtered_posts += `
-      //                   </div>
-      //                   <div class="tag">
-      //                       <div class="tag_sec">`;
-      //       if (`${posts[index].catigories}` === "meat") {
-      //         filtered_posts += `<img src='../img/icons/16/meat_16.png' alt=''>`;
-      //       } else if (`${posts[index].catigories}` === "vegetable") {
-      //         filtered_posts += `<img src='../img/icons/16/vegetable_16.png' alt=''>`;
-      //       } else if (`${posts[index].catigories}` === "dairy") {
-      //         filtered_posts += `<img src='../img/icons/16/dairy_16.png' alt=''>`;
-      //       } else if (`${posts[index].catigories}` === "fruit") {
-      //         filtered_posts += `<img src='../img/icons/16/fruit_16.png' alt=''>`;
-      //       } else if (`${posts[index].catigories}` === "pastry") {
-      //         filtered_posts += `<img src='../img/icons/16/pastry_16.png' alt=''>`;
-      //       } else if (`${posts[index].catigories}` === "seafood") {
-      //         filtered_posts += `<img src='../img/icons/16/seafood_16.png' alt=''>`;
-      //       }
-      //       filtered_posts += `
-      //                           <span>${posts[index].catigories}</span>
-      //                       </div>
-      //                   </div>
-      //               </div>
-      //           </div>
-      //                `;
-      //     }
-      //     $(".publicity_container").html(filtered_posts);
-      //     init();
-      //   },
-      //   dataType: "json",
-      // });
     });
     init();
   });
   window.addEventListener("scroll", () => {
     const scrollable =
       document.documentElement.scrollHeight - window.innerHeight;
-    console.log(document.documentElement.scrollHeight);
     const scrolled = window.scrollY;
     if (scrollable - 150 - Math.ceil(scrolled) < 0) {
       getData(category, limit);
       limit += 9;
-      console.log(category);
     }
   });
 </script>
