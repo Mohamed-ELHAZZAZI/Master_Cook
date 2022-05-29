@@ -43,6 +43,12 @@ class PostsController extends Controller
                 header("location: " . URL . "/posts/create");
                 exit();
             }
+            $dispo_category = ["meat", "fruit", "Vegetables", "seafood", "pastry", "dairy"];
+            if (!in_array($_POST["catigories"], $dispo_category)) {
+                Session::setError("Please Choose appropriate category");
+                header("location: " . URL . "/posts/create");
+                exit();
+            }
 
             // if (!Helper::title_check($title)) {
             //     Session::setError("Invalid title format");
@@ -191,7 +197,14 @@ class PostsController extends Controller
             }
 
             if (!Helper::isEmpty([$_POST["catigories"]])) {
-                $post->catigories =  $_POST["catigories"];
+                $dispo_category = ["meat", "fruit", "Vegetables", "seafood", "pastry", "dairy"];
+                if (in_array($_POST["catigories"], $dispo_category)) {
+                    $post->catigories =  $_POST["catigories"];
+                } else {
+                    Session::setError("Please Choose appropriate category");
+                    header("location: " . URL . "/posts/modify/" . $id);
+                    exit();
+                }
             } else {
                 Session::setError("Please Choose a categorie");
                 header("location: " . URL . "/posts/modify/" . $id);
@@ -311,7 +324,7 @@ class PostsController extends Controller
             if ($_POST["category"] === "all") {
                 $posts = Post::Where("", [], [$_POST["limit"], $_POST["limit"] + 9]);
             } else {
-                $posts = Post::Where("catigories = ? AND is_confirmed = ?", [$_POST["category"] , 1], [$_POST["limit"], $_POST["limit"] + 9]);
+                $posts = Post::Where("catigories = ? AND is_confirmed = ?", [$_POST["category"], 1], [$_POST["limit"], $_POST["limit"] + 9]);
             }
             echo json_encode($posts);
         } else {
