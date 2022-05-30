@@ -165,25 +165,30 @@
           <div class="tag">
             <div class="tag_sec" data-category="<?php if ($post->catigories === "meat") {  echo "meat"; } else if ($post->catigories === "vegetable") {  echo "vegetable"; } else if ($post->catigories === "pastry") {  echo "pastry"; } else if ($post->catigories === "seafood") {  echo "seafood"; } else if ($post->catigories === "dairy") {  echo "dairy"; }else if ($post->catigories === "fruit") { echo "fruit"; } ?>">
               <?php
-                  if ($post->catigories === "meat") { echo '<img
-                src="../img/icons/16/meat_16.png"
-                alt=""
-              />'; } else if ($post->catigories === "vegetable") { echo '<img
-                src="../img/icons/16/vegetable_16.png"
-                alt=""
-              />'; } else if ($post->catigories === "pastry") { echo '<img
-                src="../img/icons/16/pastry_16.png"
-                alt=""
-              />'; } else if ($post->catigories === "seafood") { echo '<img
-                src="../img/icons/16/seafood_16.png"
-                alt=""
-              />'; } else if ($post->catigories === "dairy") { echo '<img
-                src="../img/icons/16/dairy_16.png"
-                alt=""
-              />'; }else if ($post->catigories === "fruit") { echo '<img
-                src="../img/icons/16/fruit_16.png"
-                alt=""
-              />'; } ?>
+                  if ($post->catigories === "meat") { ?><img
+                src="<?= URL ?>/img/icons/16/meat_16.png"
+                alt="">
+              <?php } else if ($post->catigories === "vegetable") {?>
+                <img
+                src="<?= URL ?>/img/icons/16/vegetable_16.png"
+                alt=""/> 
+              <?php } else if ($post->catigories === "pastry") { ?>
+                <img
+                src="<?= URL ?>/img/icons/16/pastry_16.png"
+                alt="" >
+              <?php } else if ($post->catigories === "seafood") { ?> 
+                <img
+                src="<?= URL ?>/img/icons/16/seafood_16.png"
+                alt="" ?> 
+              <?php } else if ($post->catigories === "dairy") { ?>
+                <img
+                src="<?= URL ?>/img/icons/16/dairy_16.png"
+                alt="">
+              <?php }else if ($post->catigories === "fruit") { ?>
+                <img
+                src="<?= URL ?>/img/icons/16/fruit_16.png"
+                alt="">
+              <?php } ?>
               <span><?= $post->catigories ?></span>
             </div>
           </div>
@@ -242,17 +247,17 @@
                         <div class="tag">
                             <div class="tag_sec" data-category = `;                    
           if (`${posts[index].catigories}` === "meat") {
-            filtered_posts += `"meat"> <img src='../img/icons/16/meat_16.png' alt=''>`;
+            filtered_posts += `"meat"> <img src='${URL}/img/icons/16/meat_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "vegetable") {
-            filtered_posts += `"vegetable"><img src='../img/icons/16/vegetable_16.png' alt=''>`;
+            filtered_posts += `"vegetable"><img src='${URL}/img/icons/16/vegetable_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "dairy") {
-            filtered_posts += `"dairy"><img src='../img/icons/16/dairy_16.png' alt=''>`;
+            filtered_posts += `"dairy"><img src='${URL}/img/icons/16/dairy_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "fruit") {
-            filtered_posts += `"fruit"><img src='../img/icons/16/fruit_16.png' alt=''>`;
+            filtered_posts += `"fruit"><img src='${URL}/img/icons/16/fruit_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "pastry") {
-            filtered_posts += `"pastry"><img src='../img/icons/16/pastry_16.png' alt=''>`;
+            filtered_posts += `"pastry"><img src='${URL}/img/icons/16/pastry_16.png' alt=''>`;
           } else if (`${posts[index].catigories}` === "seafood") {
-            filtered_posts += `"seafood"><img src='../img/icons/16/seafood_16.png' alt=''>`;
+            filtered_posts += `"seafood"><img src='${URL}/img/icons/16/seafood_16.png' alt=''>`;
           }
 
           filtered_posts += `

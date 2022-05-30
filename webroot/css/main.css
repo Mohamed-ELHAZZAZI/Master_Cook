@@ -355,7 +355,7 @@ hr {
 .body_container {
   min-height: 100vh;
   width: 90%;
-  margin: auto;
+  margin:auto;
 }
 .body_container .categories {
   min-height: 150px;
