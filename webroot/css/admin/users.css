@@ -18,6 +18,7 @@ body {
   margin: 0 auto;
   height: 500px;
   overflow-y: scroll;
+  margin-bottom: 10px;
 }
 .navbar {
   width: 80%;

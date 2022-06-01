@@ -145,7 +145,7 @@ class UsersController extends Controller
             $search = $_POST["search"];
            $users = User::Where("id LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ? OR email LIKE ? ", ['%'.$search.'%', '%'.$search.'%', '%'.$search.'%', '%'.$search.'%', '%'.$search.'%']);
         }else {
-            $users = User::all();
+            $users = User::all([0 , 10]);
         }
         
 
@@ -192,7 +192,13 @@ class UsersController extends Controller
         echo "Error";
         exit();
     }
-    
-
-
+    public function ajax_index()
+    {
+        if (isset($_POST["limit"])) {
+            $users = User::all([$_POST["limit"] , $_POST["limit"] + 10]);
+            echo json_encode($users);
+        } else {
+            echo json_encode([]);
+        }
+    }
 }

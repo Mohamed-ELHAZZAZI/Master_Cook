@@ -12,8 +12,8 @@ if(!isset($data["users"])) {
       placeholder="Search"
       aria-label="Search"
       name="search"
-      />
-      
+    />
+
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
       Search
     </button>
@@ -66,7 +66,7 @@ if(!isset($data["users"])) {
 </div>
 <?php } ?>
 
-<div class="table_container">
+<div class="table_container" id="user_table">
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -75,14 +75,13 @@ if(!isset($data["users"])) {
         <th scope="col">Last name</th>
         <th scope="col">User name</th>
         <th scope="col">Email</th>
-        <th scope="col" >Statut</th>
+        <th scope="col">Statut</th>
         <th scope="col" colspan="2"></th>
         <th scope="col"></th>
         <th scope="col"></th>
-
       </tr>
     </thead>
-    <tbody>
+    <tbody class="user_container">
       <?php foreach($data["users"] as $users) {?>
       <tr>
         <th scope="row"><?= $users->id ?></th>
@@ -94,16 +93,17 @@ if(!isset($data["users"])) {
           <?php
             if($users->is_admin) { echo "Admin"; }else{ echo "user"; } ?>
         </td>
-          <!-- <input type="hidden" value="<?= $users->id ?>"> -->
-          <td <?php if(($users->id === Session::get("user_id"))) {echo "colspan = '4'"; }?>>
-            <button type="button" class="btn btn-primary">Profile</button>
-          </td>
-          <?php if(($users->id != Session::get("user_id"))) { ?>
-            <form
+        <!-- <input type="hidden" value="<?= $users->id ?>"> -->
+        <td <?php if(($users->
+          id === Session::get("user_id"))) {echo "colspan = '4'"; }?>>
+          <button type="button" class="btn btn-primary">Profile</button>
+        </td>
+        <?php if(($users->id != Session::get("user_id"))) { ?>
+          <td>
+        <form
           action="<?=URL?>/admin/users/delete/<?= $users->id ?>"
           method="POST"
         >
-          <td>
             <button
               type="submit"
               onclick="return delete_user_confirm()"
@@ -112,31 +112,140 @@ if(!isset($data["users"])) {
             >
               delete
             </button>
-          </td>
-        </form>
+          </form>
+        </td>
+        <td></td>
+        <td>
         <form
           action="<?=URL?>/admin/users/admin/<?= $users->id ?>"
           method="POST"
         >
-          <td>
-          <td>
-            <button type="submit" onclick="return set_admin_user_confirm()" name="SetAdmin" class="btn btn-secondary">
+            <button
+              type="submit"
+              onclick="return set_admin_user_confirm()"
+              name="SetAdmin"
+              class="btn btn-secondary"
+            >
               <?php  if($users->is_admin) { echo "Remove Admin"; }else { echo
               "Set to Admin"; } ?>
-            </button>
-          </td>
-        </form>
-          <?php }?>
+            </form>
+          </button>
+        </td>
+        <?php }?>
       </tr>
-      <?php } 
-      
+      <?php }      
       if (empty($data["users"])) { ?>
-        <tr>
-          <td colspan="9" class="not_found">No data founded</td>
-        </tr>
-        <?php }
+      <tr>
+        <td colspan="9" class="not_found">No data founded</td>
+      </tr>
+      <?php }
       ?>
     </tbody>
   </table>
 </div>
-<button type="button" onclick="window.location.href = '<?= URL ?>'" class="btn btn-secondary">Go to main page</button>
+<button
+  type="button"
+  onclick="window.location.href = '<?= URL ?>'"
+  class="btn btn-secondary"
+>
+  Go to main page
+</button>
+<script>
+  function getUsers(limit) {
+    if (!is_empty) {
+      $.ajax({
+        url: "<?= URL ?>/ajax/users",
+        type: "POST",
+        data: {
+          limit,
+        },
+        success: function (users) {
+          if (users.length === 0) {
+            is_empty = true;
+          }
+          var calledUsers = " ";
+          var URL = "<?= URL ?>";
+          var user_id = "<?= Session::get('user_id') ?>";
+          for (let index = 0; index < users.length; index++) {
+            calledUsers += `
+            <tr>
+          <th scope="row">${users[index].id}</th>
+          <td>${users[index].first_name}</td>
+          <td>${users[index].last_name}</td>
+          <td>${users[index].user_name}</td>
+          <td>${users[index].email}</td>`;
+            if (users[index].is_admin == 1) {
+              calledUsers += `<td>Admin</td>`;
+            } else {
+              calledUsers += `<td>User</td>`;
+            }
+            if (users[index].id === user_id) {
+              calledUsers += `<td colspan = '4'>`;
+            } else {
+              calledUsers += "<td>";
+            }
+            calledUsers += `
+          <button type="button" class="btn btn-primary">Profile</button>
+          </td>
+          `;
+            if (users[index].id !== user_id) {
+              calledUsers += `
+          <td>
+          <form action="${URL}/admin/users/delete/${users[index].id}" method="POST" >
+            <button
+              type="submit"
+              onclick="return delete_user_confirm()"
+              name="delete"
+              class="btn btn-danger"
+            >
+              delete
+            </button>
+            </form>
+            </td>
+          <td></td>
+          <td>
+         <form action="${URL}/admin/users/admin/${users[index].id}" method="POST" >
+
+            <button
+              type="submit"
+              onclick="return set_admin_user_confirm()"
+              name="SetAdmin"
+              class="btn btn-secondary"
+            >`;
+              if (users[index].is_admin == 1) {
+                calledUsers += `Remove Admin`;
+              } else {
+                calledUsers += `Set to Admin`;
+              }
+              calledUsers += `
+            </form>
+            </button>
+            </td>
+          </tr>`;
+            }
+          }
+          $(".user_container").html($(".user_container").html() + calledUsers);
+        },
+        dataType: "json",
+      });
+    } else {
+      console.log("no more data");
+    }
+  }
+  var limit = 10;
+  var is_empty = false;
+  var user_table = document.getElementById("user_table");
+  if (user_table != null) {
+    user_table.addEventListener("scroll", mycall);
+    function mycall() {
+      var myScrollTop = user_table.scrollTop;
+      var myScrollHeight = user_table.scrollHeight;
+      var diff = myScrollHeight - myScrollTop;
+      var height = user_table.clientHeight;
+      if (diff - (height + 100) <= 0) {
+        getUsers(limit);
+        limit += 10;
+      }
+    }
+  }
+</script>

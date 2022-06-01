@@ -448,7 +448,7 @@ hr {
   font-weight: 200;
 }
 
-.like_btn[data-like="1"] {
+.fa-heart.fa-heart {
   color: #4e60ff;
 }
 

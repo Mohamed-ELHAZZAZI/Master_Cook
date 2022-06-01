@@ -43,9 +43,12 @@ class User extends Model
         return App::$db->query($sql, [$id])->fetchAll(PDO::FETCH_CLASS, User::class)[0];
     }
 
-    public static function all()
+    public static function all($limit = [-1 , -1])
     {
         $sql = "SELECT * FROM users ";
+        if ($limit[0] >= 0 && $limit[1] > 0 && $limit[0] < $limit[1] + 1 ) {
+            $sql .= " LIMIT " . $limit[0].",".$limit[1];
+        }
         return App::$db->query($sql)->fetchAll(PDO::FETCH_CLASS, User::class);
     }
 
