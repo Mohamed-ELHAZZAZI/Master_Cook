@@ -36,7 +36,7 @@ $chef = $data["chef"];
             <?php if (Session::get("user_id") != null) {?>
             <?php if ($post->isliked) {?>
             <div data-like="1" class="like_btn" data-id="<?= $post->id ?>">
-              <i class="fas fa-heart fa-heart"></i>
+              <i class="fas fa-heart fa-heart blue"></i>
             </div>
             <?php } else {?>
             <div data-like="0" class="like_btn" data-id="<?= $post->id ?>">
@@ -89,7 +89,7 @@ $chef = $data["chef"];
 <script>
   function init() {
     $(".like_btn").on("click", function like() {
-      const liked = `<i class="fas fa-heart  fa-heart"></i>`;
+      const liked = `<i class="fas fa-heart  fa-heart blue"></i>`;
       const not_liked = `<i class="fas fa-heart heart_icon"></i>`;
 
       var post_id = $(this).data("id");

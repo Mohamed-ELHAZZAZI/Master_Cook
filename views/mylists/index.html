@@ -72,7 +72,7 @@
               <?php if (Session::get("user_id") != null) {?>
               
               <div data-like="1" class="like_btn" data-id="<?= $post->id ?>">
-                <i class="fas fa-heart  liked"></i>
+                <i class="fas fa-heart  liked blue"></i>
               </div>
               <?php } ?>
             </div>
@@ -116,7 +116,7 @@
  <script>
   function init() {
     $(".like_btn").on("click", function like() {
-      const liked = `<i class="fas fa-heart  fa-heart"></i>`;
+      const liked = `<i class="fas fa-heart  fa-heart blue"></i>`;
       const not_liked = `<i class="fas fa-heart heart_icon"></i>`;
 
       var post_id = $(this).data("id");
