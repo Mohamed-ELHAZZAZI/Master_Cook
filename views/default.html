@@ -77,7 +77,19 @@
                                 <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>
                                 <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
                             <?php } ?>
-                            <li><a href = "<?= URL ?>/users/profile" class="profile_img_link" style = "background-image: url('<?= URL  ?><?php echo $user->profile_img ?>');" ></a></li>
+                            <li>
+                                <!-- <a href = "<?= URL ?>/users/profile" class="profile_img_link" style = "background-image: url('<?= URL  ?><?php echo $user->profile_img ?>');" ></a> -->
+                                <div class="dropdown">
+                                    <a class="profile_img_link" style = "background-image: url('<?= URL  ?><?php echo $user->profile_img ?>');" type="button" id="dropdownMenuButton1">
+                                      
+                                    </a>
+                                    <ul class="dropdown-menu" id="show_drop" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="<?= URL ?>/cuisin/chef/<?=$user_id?>"><img src="<?= URL ?>/img/icons/cuisin.png" alt=""> My cuisin</a></li>
+                                        <li><a href="<?= URL ?>/users/profile" class="dropdown-item"><i class="fas fa-users-cog"></i>profile settings</a></li>
+                                        <li><a class="dropdown-item" href="<?= URL ?>/users/logout"><i class="fas fa-sign-out-alt"></i>logout</a></li>
+                                    </ul>
+                                  </div>
+                            </li>
                             <li class="nav_btn  <?php if(Session::get('admin')) {echo 'show';} ?> "><a id="show_ver_nav" href="#" ><i class="fas fa-bars"></i></a></li>
                         </ul>
                     </div>
@@ -108,7 +120,7 @@
                                     <ul class="ver-nav-content">
                                         <li><a href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
                                         <li><a href="<?= URL ?>/mylists"><i class="fas fa-heart"></i>My lists</a></li>
-                                        <li><a href="#"><i class="fas fa-user-alt"></i>profile settings</a></li>
+                                        <li><a href="<?= URL ?>/users/profile"><i class="fas fa-users-cog"></i>profile settings</a></li>
                                         <?php if($admin) {?>
                                             <li><a href="<?= URL ?>/admin/users"><i class="fas fa-users"></i>users list</a></li>
                                         <li><a href="<?= URL ?>/admin/posts"><i class="fab fa-creative-commons-pd"></i>Unpublished posts</a></li>

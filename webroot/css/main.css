@@ -98,6 +98,7 @@ header {
   display: flex;
   color: black;
   align-items: center;
+  gap: 10px;
 }
 .nav_header .right_part_nav ul.right-list li a.link_btn-nav {
   /*fixing a */
@@ -331,6 +332,9 @@ header {
   align-items: center;
   color: #4e60ff;
 }
+.publicity_line {
+  height: 0 !important;
+}
 hr {
   height: 2px;
   border-width: 0;
@@ -355,7 +359,7 @@ hr {
 .body_container {
   min-height: 100vh;
   width: 90%;
-  margin:auto;
+  margin: auto;
 }
 .body_container .categories {
   min-height: 150px;
@@ -550,15 +554,13 @@ hr {
   justify-content: center;
   border: 1px solid #4e60ff;
   border-radius: 9px;
-  padding:6px;
+  padding: 6px;
 }
 
 .restaurant .title .rest_img {
   width: 50px;
   border-radius: 25px;
 }
-
-
 
 /*--------------------------------------------------------posts--------------------------------------*/
 /*--------------------------------------------------------posts--------------------------------------*/
@@ -674,7 +676,6 @@ body::-webkit-scrollbar-thumb {
   font-size: 30px;
 }
 
-
 /*-----------------------------------------------------Media-----------------------------------------*/
 @media only screen and (max-width: 1250px) {
   .publicity_container .cnt {
@@ -747,4 +748,21 @@ body::-webkit-scrollbar-thumb {
   .publicity_container .cnt {
     width: 300px;
   }
+}
+.dropdown-menu {
+  right: 0;
+  margin-top: 25px;
+}
+.dropdown-menu::after{
+  content: "";
+  border: 1px solid rgba(0,0,0,.15);
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  top: -17px;
+  transform: rotate(45deg);
+  right: 16px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  background: white;
 }

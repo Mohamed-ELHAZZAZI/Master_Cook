@@ -1,12 +1,21 @@
 let show_ver_nav = document.getElementById("show_ver_nav");
+let profile_ = document.getElementById("dropdownMenuButton1");
+
 
 if (show_ver_nav != null) {
   show_ver_nav.addEventListener("click", function (event) {
     event.preventDefault();
     document.getElementById("ver_nav").classList.toggle("show");
+    document.getElementById("show_drop").classList.remove("show");
   });
 }
 
+        if (profile_ != null) {
+            profile_.addEventListener("click", ()=> {
+                document.getElementById("show_drop").classList.toggle("show");
+                document.getElementById("ver_nav").classList.remove("show");
+            })
+        }
 //--------------------------------------------------------create post---------------------------------------
 //--------------------------------------------------------create post---------------------------------------
 //--------------------------------------------------------create post---------------------------------------
