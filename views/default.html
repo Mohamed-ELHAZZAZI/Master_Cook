@@ -64,7 +64,7 @@
                         </ul>
                         <ul class="right-list">
                             <?php if(App::getRouter()->getController() == "pages" && App::getRouter()->getAction() == "index") {?>
-                                <li class="new_cook"><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i>New cook</a></li>
+                                <li><a class="link_btn-nav" id="new_posts" href="<?= URL ?>/posts/create"><i class="fas fa-plus"></i><span class="my_list">New cook</span></a></li>
                                 <li><a class="link_btn-nav" href="<?= URL ?>/mylists"><i class="fas fa-heart heart_icon"></i> <span class="my_list">My list</span></a></li>
                                 <?php } elseif(App::getRouter()->getController() == "posts" && (App::getRouter()->getAction() == "create" || App::getRouter()->getAction() == "show") || App::getRouter()->getAction() == "modify") {?>
                                 <li class="new_cook"><a class="link_btn-nav home" id="home_link" href="<?= URL ?>"><i class="fas fa-home"></i>Home</a></li>

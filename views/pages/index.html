@@ -202,8 +202,14 @@
     </div>
   </div>
 </section>
+<script>
+
+</script>
+
 
 <script>
+    var sc;
+     sc = "<?php if(isset($_POST['search_btn'])){ ?>0<?php }else {?>1<?php }?>";
   function getData(category, limit) {
     $.ajax({
       url: "<?= URL ?>/ajax/posts",
@@ -220,7 +226,7 @@
       success: function (posts) {
         var filtered_posts = "";
         var URL = "<?=URL?>";
-        var user_id = "Session::get('user_id')";
+        var user_id = "<?= Session::get('user_id') ?>";        
         for (let index = 0; index < posts.length; index++) {
           filtered_posts += `
                      <div class="cnt">
@@ -323,7 +329,7 @@
     const scrollable =
       document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = window.scrollY;
-    if (scrollable - 150 - Math.ceil(scrolled) < 0) {
+    if ((scrollable - 150 - Math.ceil(scrolled) < 0) && sc ) {
       getData(category, limit);
       limit += 9;
     }
