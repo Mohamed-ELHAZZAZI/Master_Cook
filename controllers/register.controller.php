@@ -43,7 +43,7 @@ class RegisterController extends Controller{
                 exit();
             }
             if (Helper::pass_match($password, $repass) !== true) {
-                Session::setError("Passwods don't much, try again!");
+                Session::setError("Passwords don't much, try again!");
                 header("location: ". URL ."/register");
 
                 exit();
