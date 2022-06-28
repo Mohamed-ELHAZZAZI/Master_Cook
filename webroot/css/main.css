@@ -456,11 +456,6 @@ hr {
   color: #4e60ff;
 }
 
-.main-container .publicity_container .cook .cook_info .heart_icon:hover,
-.fa-heart:hover {
-  transform: scale(1.2);
-}
-
 .main-container .publicity_container .cook .cook_info .about_cook {
   display: flex;
   flex-direction: column;
