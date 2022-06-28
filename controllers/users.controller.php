@@ -98,7 +98,7 @@ class UsersController extends Controller
             if (isset($_FILES['image'])) {
                 $file_temp = $_FILES['image']['tmp_name'];
                 if (!empty($file_temp)) {
-                    $allowed_ext = array("jpeg", "jpg", "gif", "png", "jfif");
+                    $allowed_ext = array("jpeg", "jpg", "gif", "png", "jfif","JPEG", "JPG", "GIF", "PNG", "JFIF");
                     $exp = explode(".", $_FILES['image']['name']);
                     $ext = end($exp);
                     $file_name =  "profile_= " . $user->id . "." . $ext;
@@ -106,6 +106,9 @@ class UsersController extends Controller
                     if (in_array($ext, $allowed_ext)) {
                         if (move_uploaded_file($file_temp, $path)) {
                             $user->profile_img =  "/webroot/upload/users_profile/" . $file_name;
+                            $user->updateProfile();
+                            Session::setFlash("Profile changed");
+                            header("location: " . URL . "/users/profile");
                         }
                     } else {
                         Session::setError("invalid image extention");
@@ -113,9 +116,6 @@ class UsersController extends Controller
                     }
                 }
             }
-            $user->updateProfile();
-            Session::setFlash("Profile changed");
-            header("location: " . URL . "/users/profile");
         } elseif (isset($_POST["delete_profile"])) {
             $id = Session::get("user_id");
             $user = User::find($id);
@@ -143,15 +143,16 @@ class UsersController extends Controller
         }
         if (isset($_POST["search"])) {
             $search = $_POST["search"];
-           $users = User::Where("id LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ? OR email LIKE ? ", ['%'.$search.'%', '%'.$search.'%', '%'.$search.'%', '%'.$search.'%', '%'.$search.'%']);
-        }else {
-            $users = User::all([0 , 10]);
+            $users = User::Where("id LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ? OR email LIKE ? ", ['%' . $search . '%', '%' . $search . '%', '%' . $search . '%', '%' . $search . '%', '%' . $search . '%']);
+        } else {
+            $users = User::all([0, 10]);
         }
-        
+
 
         $this->data["users"] = $users;
     }
-    public function admin_delete() {
+    public function admin_delete()
+    {
         if (!Session::get("admin")) {
             echo "page not found";
             exit();
@@ -163,13 +164,14 @@ class UsersController extends Controller
             header("location: " . URL . "/admin/users");
         }
     }
-    public function admin_admin() {
+    public function admin_admin()
+    {
         if (!Session::get("admin")) {
             echo "page not found";
             exit();
         }
         $id = $this->parms[0];
-         if (isset($_POST["SetAdmin"])) {
+        if (isset($_POST["SetAdmin"])) {
             $user = User::find($id);
             if ($user->is_admin) {
                 $user->is_admin = false;
@@ -179,15 +181,15 @@ class UsersController extends Controller
                 $msg = "user upgraded to admin";
             }
             $user->updateAdmin();
-            
+
             if ($user->id === Session::get("user_id")) {
-                header("location: " . URL );
+                header("location: " . URL);
                 $msg = "You are no more";
                 exit();
             }
             Session::setWarning($msg);
             header("location: " . URL . "/admin/users");
-            exit ();
+            exit();
         }
         echo "Error";
         exit();
@@ -195,7 +197,7 @@ class UsersController extends Controller
     public function ajax_index()
     {
         if (isset($_POST["limit"])) {
-            $users = User::all([$_POST["limit"] , $_POST["limit"] + 10]);
+            $users = User::all([$_POST["limit"], $_POST["limit"] + 10]);
             echo json_encode($users);
         } else {
             echo json_encode([]);
