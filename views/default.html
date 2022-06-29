@@ -109,6 +109,8 @@
             </div>
         </nav>
     </header>
+    <?php
+    if(App::getRouter()->getController() == "pages" && App::getRouter()->getAction() == "index") {?>
     <nav class="navbar navbar-light bg-light mobile_format">
         <form class="form-inline" method="POST" action="<?= URL ?><?php if(App::getRouter()->getController() == 'mylists' && App::getRouter()->getAction() == 'index'){echo '/mylists';}elseif (App::getRouter()->getController() == 'cuisin' && App::getRouter()->getAction() == 'chef'){echo '/cuisin/chef';} ?>">
           <input
@@ -123,8 +125,7 @@
           </button>
         </form>
       </nav>
-
-
+      <?php } ?>
 
 
 
