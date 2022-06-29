@@ -67,8 +67,8 @@
     .avatar_info
     .profile_img_info
     .profile_img {
-    width: 88px;
-    height: 88px;
+    width: 100px;
+    height: 100px;
     border-radius: 12px;
   }
   .profile_container .profile_information .inputs_title {
@@ -179,19 +179,19 @@
   .fa-camera {
     position: absolute;
     color: #4e60ff;
-    left: 69px;
-    top: 63px;
+    left: 71px;
+    top: 71px;
     font-size: 26px;
     transition-duration: 0.5s;
   
   }
   .img_container {
-    height: 88px;
+    height: 100px;
     position: relative;
   }
   .img_container:hover > .fa-camera {
-    left: 30px;
-    top: 30px;
+    left: 37px;
+    top: 37px;
     z-index: 5;
     transition-duration: 0.5s;
   }

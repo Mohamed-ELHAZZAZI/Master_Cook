@@ -75,8 +75,8 @@
                             <?php } ?>
                             <li>
                                 <div class="dropdown">
-                                    <a class="profile_img_link" style = "background-image: url('<?= URL  ?><?php echo $user->profile_img ?>');" type="button" id="dropdownMenuButton1">
-                                      
+                                    <a class="profile_img_link" type="button" id="dropdownMenuButton1">
+                                        <img src="<?= URL  ?><?php echo $user->profile_img ?>" alt="" srcset="">
                                     </a>
                                     <ul class="dropdown-menu" id="show_drop" aria-labelledby="dropdownMenuButton1">
                                         <li><a class="dropdown-item" href="<?= URL ?>/cuisin/chef/<?=$user_id?>"><img src="<?= URL ?>/img/icons/cuisin.png" alt=""> My cuisin</a></li>

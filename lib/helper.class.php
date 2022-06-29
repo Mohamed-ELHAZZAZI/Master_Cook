@@ -63,11 +63,16 @@ class Helper
     public static function pass_check($password)
     {
         $result = true;
-        if (preg_match("/[a-zA-Z0-9]/", $password) && preg_match("/^.{8,50}$/", $password) && preg_match("/[\[^\'£$%^&*()}{@:\'#~?><>,;@\|\\\-=\-_+\-¬\`\]]/", $password)) {
-            $result = true;
-        } else {
-            $result = false;
-        }
+        /**
+         * 
+         * if (preg_match("/[a-zA-Z0-9]/", $password) && preg_match("/^.{8,50}$/", $password) && preg_match("/[\[^\'£$%^&*()}{@:\'#~?><>,;@\|\\\-=\-_+\-¬\`\]]/", $password)) {
+        *$result = true;
+        *} else {
+        *    $result = false;
+        *}
+         * 
+         */
+        
         return $result;
     }
     /**
