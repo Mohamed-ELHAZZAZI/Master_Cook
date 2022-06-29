@@ -25,7 +25,7 @@
 
             <label class="label_info" for="p_title">
                 <span>Post title:</span>
-                <input type="text" class="title" name="title" id="p_title" maxlength="35">
+                <input type="text" class="title" name="title" id="p_title" maxlength="40">
             </label>
             <!-------------------------------------------------------------------------------------------------------------------------->
             <div class="label_info box">
@@ -54,9 +54,10 @@
                 <input type="number" name="estimated_time" class="time" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="estimated_time" pattern="\d*" id="p_time" maxlength="3">
                 <span>min.</span>
             </label>
-            <label for="discription" class="label_info">
+            <label for="discription" class="label_info desc">
                 <span>Discription:</span>
-                <textarea name="discription" id="discription" class="desc_area" cols="30" rows="10"></textarea>
+                <textarea name="discription" id="discription" onkeyup="countChars(this)" class="desc_area" cols="30" rows="10" placeholder=""></textarea>
+                <p class="char_count" id="charNum">0/2500</p>
             </label>
             <!------------------------------------------------------------------------------------>
             <div class="categories_choice">
@@ -112,3 +113,17 @@
             </div>
     </form>
 
+
+<script>
+function countChars(obj){
+  var maxLength = 2500;
+  var minLength = 150;
+  var strLength = obj.value.length;
+  
+  if(strLength > maxLength || strLength < minLength){
+      document.getElementById("charNum").innerHTML = '<span style="color: red;">'+strLength+'/'+maxLength+'</span>';
+  }else{
+      document.getElementById("charNum").innerHTML = strLength+'/'+maxLength;
+  }
+}
+</script>

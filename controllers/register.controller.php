@@ -50,7 +50,7 @@ class RegisterController extends Controller{
                 exit();
             }
             if (Helper::pass_check($password) !== true) {
-                Session::setError("Weak password, Try again!");
+                Session::setError("Make sure your password has:<br>- Between 8 and 12 characters.<br>- One capital lettere, one lower letter, one number.<br>- Special symbole (£$%^&*()}{@:\'#~?><>,;@....)");
                 header("location: ". URL ."/register");
                 exit();
             }

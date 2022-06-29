@@ -41,7 +41,7 @@ class PostsController extends Controller
 
 
             if (Helper::isEmpty([$title, $estimated_time, $catigories, $discription])) {
-                Session::setError("Please fill all the blankc");
+                Session::setError("Please fill all the blanks");
                 header("location: " . URL . "/posts/create");
                 exit();
             }
@@ -52,23 +52,23 @@ class PostsController extends Controller
                 exit();
             }
 
-            // if (!Helper::title_check($title)) {
-            //     Session::setError("Invalid title format");
-            //     header("location: " . URL . "/posts/create");
-            //     exit();
-            // }
+            if (!Helper::title_check($title)) {
+                Session::setError("Invalid title format.Try Again!");
+                header("location: " . URL . "/posts/create");
+                exit();
+            }
 
-            // if (!Helper::time_check($estimated_time)) {
-            //     Session::setError("Invalid estimated estimated_time format");
-            //     header("location: " . URL . "/posts/create");
-            //     exit();
-            // }
+            if (!Helper::time_check($estimated_time)) {
+                Session::setError("Invalid estimated estimated_time format");
+                header("location: " . URL . "/posts/create");
+                exit();
+            }
 
-            // if (!Helper::desc_check($discription)) {
-            //     Session::setError("Invalid discription format");
-            //     header("location: " . URL . "/posts/create");
-            //     exit();
-            // }
+            if (!Helper::desc_check($discription)) {
+                Session::setError("Invalid discription format");
+                header("location: " . URL . "/posts/create");
+                exit();
+            }
 
             if (isset($_FILES['image'])) {
                 $file_temp = $_FILES['image']['tmp_name'];
@@ -170,23 +170,23 @@ class PostsController extends Controller
 
             if (!Helper::isEmpty([$_POST["title"], $_POST["estimated_time"], $_POST["discription"]])) {
 
-                // if (!Helper::title_check($_POST["title"])) {
-                //     Session::setError("Invalid title format");
-                //     header("location: " . URL . "/posts/modify/" . $id);
-                //     exit();
-                // }
+                if (!Helper::title_check($_POST["title"])) {
+                    Session::setError("Invalid title format");
+                    header("location: " . URL . "/posts/modify/" . $id);
+                    exit();
+                }
 
-                // if (!Helper::time_check($_POST["estimated_time"])) {
-                //     Session::setError("Invalid estimated estimated_time format");
-                //     header("location: " . URL . "/posts/modify/" . $id);
-                //     exit();
-                // }
+                if (!Helper::time_check($_POST["estimated_time"])) {
+                    Session::setError("Invalid estimated estimated_time format");
+                    header("location: " . URL . "/posts/modify/" . $id);
+                    exit();
+                }
 
-                // if (!Helper::desc_check($_POST["discription"])) {
-                //     Session::setError("Invalid discription format");
-                //     header("location: " . URL . "/posts/modify/" . $id);
-                //     exit();
-                // }
+                if (Helper::desc_check($_POST["discription"])) {
+                    Session::setError("Invalid discription format");
+                    header("location: " . URL . "/posts/modify/" . $id);
+                    exit();
+                }
 
                 $post->title =  $_POST["title"];
                 $post->estimated_time =  $_POST["estimated_time"];

@@ -63,16 +63,16 @@ class Helper
     public static function pass_check($password)
     {
         $result = true;
-        /**
-         * 
-         * if (preg_match("/[a-zA-Z0-9]/", $password) && preg_match("/^.{8,50}$/", $password) && preg_match("/[\[^\'£$%^&*()}{@:\'#~?><>,;@\|\\\-=\-_+\-¬\`\]]/", $password)) {
-        *$result = true;
-        *} else {
-        *    $result = false;
-        *}
-         * 
-         */
-        
+
+
+        if (preg_match("/[a-zA-Z0-9]/", $password) && preg_match("/^.{8,12}$/", $password) && preg_match("/[\[^\'£$%^&*()}{@:\'#~?><>,;@\|\\\-=\-_+\-¬\`\]]/", $password)) {
+            $result = true;
+        } else {
+            $result = false;
+        }
+
+
+
         return $result;
     }
     /**
@@ -84,7 +84,7 @@ class Helper
     {
         $result = true;
         if (preg_match("/[a-zA-Z0-9]/", $title)) {
-            if (preg_match("/^.{1,30}$/", $title)) {
+            if (preg_match("/^.{1,40}$/", $title)) {
                 $result = true;
             } else {
                 $result = false;
@@ -113,7 +113,7 @@ class Helper
     public static function desc_check($discription)
     {
         $result = true;
-        if (preg_match("/^[a-zA-Z0-9]/", $discription)) {
+        if (preg_match("/[a-zA-Z0-9]/", $discription)) {
             if (preg_match("/^.{20,2500}$/", $discription)) {
                 $result = true;
             } else {

@@ -67,7 +67,8 @@ if(isset($data["post"])) {
             </label>
             <label for="discription" class="label_info">
                 <span>Discription:</span>
-                <textarea name="discription" id="discription" class="desc_area" cols="30" rows="10"><?php if(isset($post)) {echo $post->discription;} ?></textarea>
+                <textarea name="discription" id="discription" onkeyup="countChars(this)" class="desc_area" cols="30" rows="10"><?php if(isset($post)) {echo $post->discription;} ?></textarea>
+                <p class="char_count" id="charNum">0/2500</p>
             </label>
             <!------------------------------------------------------------------------------------>
             <div class="categories_choice">
@@ -123,3 +124,16 @@ if(isset($data["post"])) {
             </div>
     </form>
 
+<script>
+    function countChars(obj){
+  var maxLength = 2500;
+  var minLength = 150;
+  var strLength = obj.value.length;
+  
+  if(strLength > maxLength || strLength < minLength){
+      document.getElementById("charNum").innerHTML = '<span style="color: red;">'+strLength+'/'+maxLength+'</span>';
+  }else{
+      document.getElementById("charNum").innerHTML = strLength+'/'+maxLength;
+  }
+}
+</script>

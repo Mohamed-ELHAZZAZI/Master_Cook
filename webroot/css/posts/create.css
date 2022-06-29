@@ -116,6 +116,7 @@ body {
     display: flex;
     justify-content: center;
   }
+  
   .label_info .desc_area {
     resize: none;
     height: 150px;
@@ -124,6 +125,10 @@ body {
     border: 1px solid #c7c8d2;
     border-radius: 5px;
   }
+  .label_info .char_count{
+
+  }
+
   .categories_choice .categories {
     min-height: 150px;
     width: 100%;
