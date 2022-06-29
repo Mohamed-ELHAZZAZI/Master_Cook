@@ -9,7 +9,7 @@ class PagesController extends Controller
         } else {
             $postes = Post::getAllPosts();
         }
-
+        config::set('site_name', 'Master Cook');
         $this->data["postes"] = $postes;
     }
     public function view()

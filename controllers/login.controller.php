@@ -8,6 +8,7 @@ class LoginController extends Controller
             header('location: '.URL);
             exit();
         }
+        config::set('site_name', 'Login');
     }
 
     public function getUser()

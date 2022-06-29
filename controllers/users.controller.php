@@ -13,6 +13,7 @@ class UsersController extends Controller
     {
         $user = User::find(Session::get("user_id"));
         $this->data["user"] = $user;
+        config::set('site_name', 'My Profile');
     }
 
 
@@ -147,8 +148,7 @@ class UsersController extends Controller
         } else {
             $users = User::all([0, 10]);
         }
-
-
+        config::set('site_name', 'Master cook-User\'s Admin Panel');
         $this->data["users"] = $users;
     }
     public function admin_delete()

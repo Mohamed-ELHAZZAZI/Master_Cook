@@ -6,6 +6,7 @@ class RegisterController extends Controller{
             header('location: '.URL);
             exit();
         }
+        config::set('site_name', 'Register');
     }
 
     public function store()

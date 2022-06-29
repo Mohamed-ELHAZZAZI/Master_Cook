@@ -79,7 +79,7 @@
                                         <img src="<?= URL  ?><?php echo $user->profile_img ?>" alt="" srcset="">
                                     </a>
                                     <ul class="dropdown-menu" id="show_drop" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="<?= URL ?>/cuisin/chef/<?=$user_id?>"><img src="<?= URL ?>/img/icons/cuisin.png" alt=""> My cuisin</a></li>
+                                        <li><a name="mycui" class="dropdown-item" href="<?= URL ?>/cuisin/chef/<?=$user_id?>"><img src="<?= URL ?>/img/icons/cuisin.png" alt="">My cuisin</a></li>
                                         <li><a href="<?= URL ?>/users/profile" class="dropdown-item"><i class="fas fa-users-cog"></i>profile settings</a></li>
                                         <?php if($admin) {?>
                                         <li><a class="dropdown-item" href="<?= URL ?>/admin/users"><i class="fas fa-users"></i>users list</a></li>

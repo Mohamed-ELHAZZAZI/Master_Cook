@@ -20,10 +20,12 @@ class PostsController extends Controller
             header("location: " . URL);
             exit();
         }
+        config::set('site_name', $post->title);
     }
 
     public function create()
     {
+        config::set('site_name', 'Create New Cook');
     }
     public function post()
     {
@@ -143,7 +145,7 @@ class PostsController extends Controller
             header("location: " . URL . "/posts/show/" . $post->id);
             exit();
         }
-
+        config::set('site_name', 'Modify Cook: '.$post->title);
         $this->data["post"] = $post;
     }
 
@@ -274,6 +276,7 @@ class PostsController extends Controller
         }
 
         $this->data["posts"] = $posts;
+        config::set('site_name', "Master Cook-Posts Admin Panele");
     }
     public function admin_delete()
     {
