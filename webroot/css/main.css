@@ -100,6 +100,10 @@ header {
   align-items: center;
   gap: 10px;
 }
+.nav_header .right_part_nav ul.right-list li a:focus {
+  background-color: #e9ecef;
+}
+
 .nav_header .right_part_nav ul.right-list li a.link_btn-nav {
   /*fixing a */
   justify-content: center;
