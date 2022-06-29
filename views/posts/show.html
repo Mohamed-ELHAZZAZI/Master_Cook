@@ -98,7 +98,9 @@ $chef  = $data["chef"];
                 </form>
             </div>
 
-       <?php }elseif (Session::get("admin")){ ?>
+       <?php }
+       if (Session::get("admin")){ ?>
+        <div class="line">Admin</div>
         <div class="chng_post">
             <form method="POST" action="<?= URL ?>/posts/delete/<?=$post_info->id?>" >
                 <button name="delete" type="submit" onclick="return delete_post_confirm()" class="btn_post btn btn-danger">Delete this post</button>

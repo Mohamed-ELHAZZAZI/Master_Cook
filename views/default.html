@@ -109,6 +109,20 @@
             </div>
         </nav>
     </header>
+    <nav class="navbar navbar-light bg-light mobile_format">
+        <form class="form-inline" method="POST" action="<?= URL ?><?php if(App::getRouter()->getController() == 'mylists' && App::getRouter()->getAction() == 'index'){echo '/mylists';}elseif (App::getRouter()->getController() == 'cuisin' && App::getRouter()->getAction() == 'chef'){echo '/cuisin/chef';} ?>">
+          <input
+            class="search-input  form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            name="search"
+          />
+          <button class="search-btn btn btn-outline-primary my-2 my-sm-0" name="search_btn" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </nav>
 
 
 
