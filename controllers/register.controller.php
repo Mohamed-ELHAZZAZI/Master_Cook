@@ -38,7 +38,7 @@ class RegisterController extends Controller{
             }
 
             if (Helper::user_exists($username, $email, $repass) !== false) {
-                Session::setError("Username od Email already exists!");
+                Session::setError("Username or Email already exists!");
                 header("location: ". URL ."/register");
 
                 exit();
@@ -50,7 +50,7 @@ class RegisterController extends Controller{
                 exit();
             }
             if (Helper::pass_check($password) !== true) {
-                Session::setError("Make sure your password has:<br>- Between 8 and 12 characters.<br>- One capital lettere, one lower letter, one number.<br>- Special symbole (£$%^&*()}{@:\'#~?><>,;@....)");
+                Session::setError("Make sure your password has:<br>- Between 6 and 40 characters.<br>- One capital lettere, one lower letter, one number.<br>- Special symbole (£$%^&*()}{@:\'#~?><>,;@....)");
                 header("location: ". URL ."/register");
                 exit();
             }
