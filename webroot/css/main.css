@@ -250,10 +250,7 @@ header {
   .nav_header .right_part_nav ul.right-list li a.link_btn-nav .my_list {
     /*the word my list in nav*/
     display: none;
-  }
-  .nav_header .right_part_nav ul.right-list li.new_cook {
-    display: none;
-  }
+}
 
   .nav_header .right_part_nav ul.right-list li a.link_btn-nav {
     /*heart button*/

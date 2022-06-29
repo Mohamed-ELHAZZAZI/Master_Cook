@@ -96,7 +96,7 @@ if(!isset($data["users"])) {
         <!-- <input type="hidden" value="<?= $users->id ?>"> -->
         <td <?php if(($users->
           id === Session::get("user_id"))) {echo "colspan = '4'"; }?>>
-          <button type="button" class="btn btn-primary">Profile</button>
+          <a href="<?= URL ?>/cuisin/chef/<?= $users->id ?>" class="btn btn-primary">Profile</a>
         </td>
         <?php if(($users->id != Session::get("user_id"))) { ?>
           <td>

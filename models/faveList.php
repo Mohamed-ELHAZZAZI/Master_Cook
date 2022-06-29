@@ -36,6 +36,4 @@ class FaveList extends Model
             return null;
         }
     }
-
-
 }
