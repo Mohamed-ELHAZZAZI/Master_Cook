@@ -225,7 +225,10 @@
       success: function (posts) {
         var filtered_posts = "";
         var URL = "<?=URL?>";
-        var user_id = "<?= Session::get('user_id') ?>";        
+        var user_id = "<?= Session::get('user_id') ?>";
+        if (posts.length === 0) {
+          filtered_posts += `<span class="not_founded_data">No postes founded</span>`
+        }else { 
         for (let index = 0; index < posts.length; index++) {
           filtered_posts += `
                      <div class="cnt">
@@ -273,6 +276,7 @@
                 </div>
                      `;
         }
+      } 
         $(".publicity_container").html($(".publicity_container").html() + filtered_posts);
         
         init();

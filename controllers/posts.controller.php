@@ -186,7 +186,7 @@ class PostsController extends Controller
                     exit();
                 }
 
-                if (Helper::desc_check($_POST["discription"])) {
+                if (!Helper::desc_check($_POST["discription"])) {
                     Session::setError("Invalid discription format");
                     header("location: " . URL . "/posts/modify/" . $id);
                     exit();

@@ -12,6 +12,7 @@ class DB
             $this->connection = new PDO('mysql:host=' . $host . ';dbname=' . $db_name .  $password, $user);
         } catch (\Throwable $th) {
             echo "Error : can not connect to data base";
+            exit();
         }
     }
     public function query($sql , $params = [])
