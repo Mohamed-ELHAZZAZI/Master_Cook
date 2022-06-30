@@ -29,16 +29,16 @@ class PostsController extends Controller
     }
     public function post()
     {
-
-
         if (isset($_POST["create_post"])) {
             $title = $_POST["title"];
             $estimated_time = $_POST["estimated_time"];
             $catigories = $_POST["catigories"];
             $discription = $_POST["discription"];
-
             $owner_id = Session::get("user_id");
-
+            setcookie("post_title", $title, time() + 36000, "http://localhost/");
+            setcookie("post_estimated_time", $estimated_time, time() + 36000, "http://localhost/");
+            setcookie("post_discription", $discription, time() + 36000, "http://localhost/");
+            setcookie("post_catigories", $catigories, time() + 36000, URL);
 
             if (Helper::isEmpty([$title, $estimated_time, $catigories, $discription])) {
                 Session::setError("Please fill all the blanks");
@@ -101,6 +101,10 @@ class PostsController extends Controller
                         if (move_uploaded_file($file_temp, $path)) {
                             $video = "/upload/media/posts_video/" . $file_name;
                             Post::setPost($owner_id, $title, $discription, $estimated_time, $catigories, $image, $video);
+                            setcookie("post_title", "");
+                            setcookie("post_estimated_time", "");
+                            setcookie("post_discription", "");
+                            setcookie("post_catigories", "");
                             Session::setFlash("Post created, Please wait for the confirmation");
                             header("location: " . URL);
                         }
@@ -145,7 +149,7 @@ class PostsController extends Controller
             header("location: " . URL . "/posts/show/" . $post->id);
             exit();
         }
-        config::set('site_name', 'Modify Cook: '.$post->title);
+        config::set('site_name', 'Modify Cook: ' . $post->title);
         $this->data["post"] = $post;
     }
 

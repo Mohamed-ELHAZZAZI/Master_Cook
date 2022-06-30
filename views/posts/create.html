@@ -25,7 +25,7 @@
 
             <label class="label_info" for="p_title">
                 <span>Post title:</span>
-                <input type="text" class="title" name="title" id="p_title" maxlength="40">
+                <input type="text" class="title" name="title" id="p_title" maxlength="40" value="<?php if(isset($_COOKIE['post_title'])){echo $_COOKIE['post_title'];} ?>">
             </label>
             <!-------------------------------------------------------------------------------------------------------------------------->
             <div class="label_info box">
@@ -51,54 +51,54 @@
 
             <label class="label_info time" for="p_time">
                 <span>Estimated cooking time:</span>
-                <input type="number" name="estimated_time" class="time" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="estimated_time" pattern="\d*" id="p_time" maxlength="3">
+                <input type="number" name="estimated_time" class="time" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" name="estimated_time" pattern="\d*" id="p_time" maxlength="3" value="<?php if(isset($_COOKIE['post_estimated_time'])){echo $_COOKIE['post_estimated_time'];} ?>">
                 <span>min.</span>
             </label>
             <label for="discription" class="label_info desc">
                 <span>Discription:</span>
-                <textarea name="discription" id="discription" onkeyup="countChars(this)" class="desc_area" cols="30" rows="10" placeholder=""></textarea>
+                <textarea name="discription" id="discription" onkeyup="countChars(this)" class="desc_area" cols="30" rows="10" placeholder=""><?php if(isset($_COOKIE['post_discription'])){echo $_COOKIE['post_discription'];} ?></textarea>
                 <p class="char_count" id="charNum">0/2500</p>
             </label>
             <!------------------------------------------------------------------------------------>
             <div class="categories_choice">
                 <span>Chouse Your categorie:</span>
                 <div class="categories">
-                    <input type="radio" name="catigories" id="vegetable" class="cat_radio" value="vegetable">
+                    <input type="radio" name="catigories" id="vegetable" class="cat_radio" <?php if(isset($_COOKIE["post_catigories"]) && $_COOKIE["post_catigories"] === 'vegetable'){echo "checked";}?> value="vegetable">
                     <label for="vegetable">
                         <a class="cate_btn" href="#" id="vegetable_a">
                             <img src="<?= URL ?>/img/icons/32/vegetable.png" alt="">
                             <span>Vegetables</span>
                         </a>
                     </label>
-                    <input type="radio" name="catigories" id="meat" class="cat_radio" value="meat">
+                    <input type="radio" name="catigories" id="meat" class="cat_radio" value="meat" <?php if(isset($_COOKIE["post_catigories"]) && $_COOKIE["post_catigories"] === 'meat'){echo "checked";}?>>
                     <label for="meat">
                         <a class="cate_btn" id="meat_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/meat.png" alt="">
                             <span>Meat</span>
                         </a>
                     </label>
-                    <input type="radio" name="catigories" id="fruit" class="cat_radio" value="fruit">
+                    <input type="radio" name="catigories" id="fruit" class="cat_radio" value="fruit" <?php if(isset($_COOKIE["post_catigories"]) && $_COOKIE["post_catigories"] === 'fruit'){echo "checked";}?>>
                     <label for="fruit">
                         <a class="cate_btn" id="fruit_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/fruit.png" alt="">
                             <span>Fruit</span>
                         </a>
                     </label>
-                    <input type="radio" name="catigories" id="seafood" class="cat_radio" value="seafood">
+                    <input type="radio" name="catigories" id="seafood" class="cat_radio" value="seafood" <?php if(isset($_COOKIE["post_catigories"]) && $_COOKIE["post_catigories"] === 'seafood'){echo "checked";}?>>
                     <label for="seafood">
                         <a class="cate_btn" id="seafood_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/seafood.png" alt="">
                             <span>Seafood</span>
                         </a>
                     </label>
-                    <input type="radio" name="catigories" id="dairy" value="dairy" class="cat_radio">
+                    <input type="radio" name="catigories" id="dairy" value="dairy" class="cat_radio" <?php if(isset($_COOKIE["post_catigories"]) && $_COOKIE["post_catigories"] === 'dairy'){echo "checked";}?>>
                     <label for="dairy" id="dairy_a">
                         <a class="cate_btn" href="#">
                             <img src="<?= URL ?>/img/icons/32/dairy.png" alt="">
                             <span>Dairy</span>
                         </a>
                     </label>
-                    <input type="radio" name="catigories" id="pastry" value="pastry" class="cat_radio">
+                    <input type="radio" name="catigories" id="pastry" value="pastry" class="cat_radio" <?php if(isset($_COOKIE["post_catigories"]) && $_COOKIE["post_catigories"] === 'pastry'){echo "checked";}?>>
                     <label for="pastry">
                         <a class="cate_btn" id="pastry_a" href="#">
                             <img src="<?= URL ?>/img/icons/32/pastry.png" alt="">
@@ -115,10 +115,10 @@
 
 
 <script>
-function countChars(obj){
+function countChars(){
   var maxLength = 2500;
   var minLength = 150;
-  var strLength = obj.value.length;
+  var strLength = document.getElementById("discription").value.length;
   
   if(strLength > maxLength || strLength < minLength){
       document.getElementById("charNum").innerHTML = '<span style="color: red;">'+strLength+'/'+maxLength+'</span>';
@@ -126,4 +126,5 @@ function countChars(obj){
       document.getElementById("charNum").innerHTML = strLength+'/'+maxLength;
   }
 }
+countChars();
 </script>
