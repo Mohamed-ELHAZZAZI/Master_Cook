@@ -85,7 +85,7 @@ if(!isset($data["posts"])) {
       <tr>
         <th scope="row"><?= $posts->id ?></th>
         <td><?= $posts->title ?></td>
-        <td><?= $posts->discription ?></td>
+        <td><?= str_replace("\n", "<br>", $posts->discription);?></td>
         <td>
           <img class="post_image" src="<?= URL . $posts->image ?>" alt="" />
         </td>

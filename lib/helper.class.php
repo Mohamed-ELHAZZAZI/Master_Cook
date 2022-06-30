@@ -109,8 +109,8 @@ class Helper
     public static function desc_check($discription)
     {
         $result = true;
-        if (preg_match("/[a-zA-Z0-9]/", $discription)) {
-            if (preg_match("/^.{20,2500}$/", $discription)) {
+        if (preg_match("/[a-zA-Z0-9]/s", $discription)) {
+            if (preg_match("/^.{20,2500}$/s", $discription)) {
                 $result = true;
             } else {
                 $result = false;

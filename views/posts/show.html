@@ -44,7 +44,7 @@ $chef  = $data["chef"];
         <div class="desc">
             <span class="ttl">Discription:</span>
             <span class="desc_box">
-                <?= $post_info->discription ?>
+                <?= str_replace("\n", "<br>", $post_info->discription);?>
                 <span>
         </div>
         <div class="categories">
