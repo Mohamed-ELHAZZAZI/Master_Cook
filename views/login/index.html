@@ -5,7 +5,7 @@
 <form method="POST" action="<?=URL?>/login/getUser" class="left_box">
     <!---The big left box-->
     <div class="main-left-box">
-      <span class="logo">Master<span class="sec_logo">cook</span></span>
+      <span class="logo">Master <span><span class="sec_logo">c<img class="logo_nav_img" src="<?= URL ?>/img/icons/restaurant.png" alt="">ok</span></span></span>
       <div class="login-box">
         <span class="box-title">Login</span>
         <span class="box-description">Sign in with your data that you entered during your
@@ -41,7 +41,7 @@
           <input type="password" name="password" id="password" placeholder="Password" />
         </label>
         <label for="keep-log" class="saving_info">
-          <input type="checkbox" id="keep-log" class="check_box" />
+          <input type="checkbox" id="keep-log" name="remember" class="check_box" />
           <span>Keep me logged in</span>
         </label>
         <input type="submit" value="Login" name="submit" class="submit" />

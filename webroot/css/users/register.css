@@ -49,6 +49,9 @@ body {
 .main-left-box .logo .sec_logo {
   color: #4e60ff;
 }
+.main-left-box .logo_nav_img {
+  width: 35px;
+}
 
 /*register box*/
 
