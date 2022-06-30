@@ -29,7 +29,7 @@
                           <input
                             class="search-input  form-control mr-sm-2"
                             type="search"
-                            placeholder="Search"
+                            placeholder="<?php if(App::getRouter()->getController() == 'mylists' && App::getRouter()->getAction() == 'index'){echo 'Search in my list';}elseif (App::getRouter()->getController() == 'cuisin' && App::getRouter()->getAction() == 'chef'){echo 'Search in this cuisine';}else {echo 'Search';} ?>"
                             aria-label="Search"
                             name="search"
                           />

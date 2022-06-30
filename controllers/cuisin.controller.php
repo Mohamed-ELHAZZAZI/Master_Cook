@@ -8,6 +8,7 @@ class CuisinController extends Controller {
             exit();
         }
 
+        
         if (isset($_POST["search_btn"])) {
             $list = Post::Where("(title LIKE ? OR discription LIKE ? ) AND  owner_id = ? AND is_confirmed = ?" , [ '%' . $_POST["search"] . '%', '%' . $_POST["search"] . '%', Session::get("chef_id") , 1]);
         } else {
@@ -15,7 +16,7 @@ class CuisinController extends Controller {
             Session::set("chef_id" ,$chef_id);
             $list = Post::Where("owner_id = ? AND is_confirmed = ?" , [$chef_id , 1]);
         }
-        $chef_info = User::find($chef_id);
+        $chef_info = User::find(Session::get("chef_id"));
         $this->data["chef"] =  User::find( Session::get("chef_id"));
         $this->data["postes"] = $list;
         
