@@ -24,10 +24,18 @@ class LoginController extends Controller
                 exit();
             }
 
+            if (isset($_POST["remember"])) {
+                echo "remember <br>";
+                setcookie("email", $email,time() + 36000,"http://localhost/");
+                setcookie("password", $password,time() + 36000,"http://localhost/");
+               }else {
+                setcookie("email", "");
+                setcookie("password", "");
+               }
+
             $user = User::Where("email = ?", [$email])[0];
 
             if ($user != null) {
-
                 if (password_verify($password, $user->password)) {
                    Session::set("user_id", $user->id);
                    header("location: " . URL);

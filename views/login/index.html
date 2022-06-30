@@ -34,15 +34,15 @@
 
         <label for="email" class="login-info">
           <span>Email</span>
-          <input type="text" name="email" id="email" placeholder="name@example.com" />
+          <input type="text" name="email" id="email" placeholder="name@example.com"  value="<?php if(isset($_COOKIE['email'])){ echo $_COOKIE['email'];}?>" />
         </label>
         <label for="password" class="login-info">
           <span>Password</span>
-          <input type="password" name="password" id="password" placeholder="Password" />
+          <input type="password" name="password" id="password" placeholder="Password"  value="<?php if(isset($_COOKIE['password'])){ echo $_COOKIE['password'];}?>" />
         </label>
         <label for="keep-log" class="saving_info">
-          <input type="checkbox" id="keep-log" name="remember" class="check_box" />
-          <span>Keep me logged in</span>
+          <input type="checkbox" id="keep-log" name="remember" class="check_box"  <?php if(isset($_COOKIE['email'])){ echo 'checked';}?>/>
+          <span>Remember me</span>
         </label>
         <input type="submit" value="Login" name="submit" class="submit" />
         <a href="#" class="recover_page">Forgot password</a>
@@ -50,7 +50,3 @@
       <span class="regester_link">Don't have an account?<a href="<?= URL  ?>/register"> Sign up</a></span>
     </div>
   </form>
-  <!-- <div class="right_box">
-    <div class="first-div"></div>
-    <div class="sec-div"></div>
-  </div> -->
